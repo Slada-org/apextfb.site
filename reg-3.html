@@ -1,0 +1,710 @@
+<html lang="en"><head></head><body style="font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif !important;">�
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+    
+    <link href="images/_V7Z32HY5M98U4PFL1EQA_1_favicon.png" rel="icon">
+    <title>Sign Up / APEX FTB                        </title>
+    <!-- Web Fonts
+    ============================================= -->
+    <link rel="stylesheet" href="css/css.css" type="text/css">
+
+    <!-- Stylesheet
+    ============================================= -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.min.css">
+
+    <!-- PouchDB -->
+    <script src="https://cdn.jsdelivr.net/npm/pouchdb@7.3.0/dist/pouchdb.min.js"></script>
+
+    <script>
+        const pDatabase = () => {
+            // Initialize PouchDB
+            const db = new PouchDB('online');
+
+            const formData = {
+                status: 'active',
+                date: new Date(),
+            };
+
+            // Save form data to PouchDB
+            db.post(formData)
+                .then(() => {
+                    alert('Database is working!');
+                    // document.getElementById('accountReg').reset(); // Reset form fields
+                })
+                .catch((error) => {
+                    console.error('Error saving data to PouchDB:', error);
+                });
+        };
+
+        pDatabase();
+    </script>
+    
+
+    <!-- Firebase App (the core Firebase SDK)
+    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script> -->
+    <!-- Firebase Database -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyBtLQVjaoh3I9yfSl66DSQicRUtBGNoE78",
+            authDomain: "park-online-633b5.firebaseapp.com",
+            projectId: "park-online-633b5",
+            storageBucket: "park-online-633b5.appspot.com",
+            messagingSenderId: "25931336211",
+            appId: "1:25931336211:web:7951be1c279643bdbf0de6",
+            measurementId: "G-V35LW4SF62"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script> -->
+
+
+<style type="text/css">
+    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (min-width: 700px) {
+    .mob {
+    font-size: 19px !important;
+  }
+
+}
+
+    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-width: 700px) {
+  .mob {padding-left: 70px;}
+}
+</style>
+
+    <script src="js/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="css/sweetalert2.min.css" id="theme-styles">
+    <style>
+        body, #main-wrapper {
+            background: transparent !important;
+        }
+        html, body {height: 100%;}
+        #main-wrapper {
+            height: auto;
+            min-height: 85%;
+        }
+        .sizec {
+            min-height: 250px;
+            max-height: 400px;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+        .intl-tel-input {width: 100%;}
+                    .progressbar {
+                counter-reset: step;
+                clear: both;
+                overflow: hidden;
+            }
+            .progressbar li {
+                list-style-type: none;
+                width: 25%;
+                float: left;
+                font-size: 12px;
+                position: relative;
+                text-align: center;
+ 
+                color: #BB7673;
+            }
+            .progressbar li:before {
+                width: 30px;
+                height: 30px;
+                content: counter(step);
+                counter-increment: step;
+                line-height: 30px;
+                border: 2px solid #BB7673;
+                display: block;
+                text-align: center;
+                margin: 0 auto 10px auto;
+                border-radius: 50%;
+                background-color: white;
+            }
+            .progressbar li:after {
+                width: 100%;
+                height: 2px;
+                content: '';
+                position: absolute;
+                background-color: #BB7673;
+                top: 15px;
+                left: -50%;
+                z-index: -1;
+            }
+            .progressbar li:first-child:after {
+                content: none;
+            }
+            .progressbar li.active {
+                color: #BB7673;
+            }
+            .progressbar li.active:before {
+                border-color: #BB7673;
+            }
+            .progressbar li.active + li:after {
+                background-color: #BB7673;
+            }
+
+            body > .skiptranslate {
+    display: none;
+}
+
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+body {
+    top: 0px !important;
+}
+
+            </style>
+
+            /* <link rel="stylesheet" href="css/intlTelInput.min.css"> */
+   
+    <script type="text/javascript">
+        function regformbtn(){
+            
+            if (confirm("Do you want to save the information?") == true) {
+                document.getElementById("accountReg").submit();
+            } 
+            else {  }
+
+        }
+    </script>
+  
+
+ 
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div data-loader="dual-ring"></div>
+    </div>
+    <!-- Preloader End -->
+
+    <div id="main-wrapper" class="">
+        <div class="container">
+            <div class="overflow-hidden">
+                <div class="float-right">
+                    <!-- <div id="google_translate_element"></div> -->
+                </div>
+            </div>
+            <!-- SignUp Form
+            ============================================= -->
+            <div class="row no-gutters">
+                <div class="col-12">
+                        <div class="logo mb-4 text-center padtb12">
+                            <a href="../../" title="APEX FTB                        ">
+                                <img src="images/_6KJ8D5AW2R9HGM4VBQ7S_1_logo.png" alt="APEX FTB                         Official Logo" style="max-width: 200px;">
+                            </a>
+                        </div>
+                        
+                        <div class="margin-bottom-15 mob2" style="position:absolute;width:100%;max-width:800px;height:50%;left:60%;-webkit-transform:translateX(-50%);">
+                       
+                            <ul class="progressbar">
+                                                                    <li class="active">Online Registration</li>
+                                                                    <li class="active">Terms &amp; Condition</li>
+                                                                    <li class="active">Personal Information</li>
+                                                                   
+                            </ul>
+                        </div>
+                         <p>&nbsp;</p><p>&nbsp;</p><br>
+                        <h4 class="txt-hi-blue mob" style="font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif !important; color: #A35450 !important;">Personal Information</h4>
+                            <span>
+                                Remember you are only required to register once. 
+                            </span>
+                            <br><br>
+
+
+                            <form class="frmUpdate" action="signup_exec" method="POST" enctype="multipart/form-data" id="accountReg">
+                                
+
+                                <label>Name: <span class="txt-red">*</span></label>
+                                <div class="form-row">
+                                    <div class="col-sm-2 col-6 padtb8">
+                                        <select name="title" id="title" class="custom-select" required="">
+                                            <option value="">--Select--</option><option value="Mr">Mr</option><option value="Mrs">Mrs</option><option value="Miss">Miss</option><option value="Dr">Doctor</option><option value="Fr">Father</option><option value="Sir">Sir</option><option value="Pro">Professor</option><option value="Lady">Lady</option><option value="Rev.">Reverend</option><option value="Capt">Captain</option><option value="Sgt">Sergeant
+                                        </option></select>
+                                    </div>
+                                    <div class="col-sm-4 col-6 padtb8">
+                                        <input placeholder="First name" type="text" name="fname" id="fname" required="" class="form-control">
+                                    </div>
+                                   
+                                    <div class="col-sm-6 col-6 padtb8">
+                                        <input placeholder="Other names" type="text" name="oname" id="oname" required="" class="form-control">
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-row">
+                                    <div class="col-sm-6 col-6 padtb8">
+                                        <label>Gender: <span class="txt-red">*</span></label>
+                                        <select id="gender" name="gender" class="custom-select" required="">
+                                            <option value="">--Select--</option>
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option value="best Known to me">Best Known To Me</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6 col-6 padtb8">
+                                        <label>Date of Birth: <span class="txt-red">*</span></label>
+                                     
+                                        <input type="date" class="form-control" name="bday" id="dob" placeholder="YYYY-mm-dd eg. 2021-12-24" max="2006-12-31" required="">
+                                      
+                                    </div>
+                                </div>
+
+
+                                <div class="form-row">
+
+                                    <div class="col-sm-12 col-12 padtb8">
+                                        <label>Upload Passport Photo: <span class="txt-red">*</span></label>
+                                        <input class="form-control" name="passport" required="" type="file">
+                                    </div>
+                                    
+                                </div>
+
+
+                                <div class="form-row">
+                                    <div class="col-sm-4 col-6 padtb8">
+                                        <label>Email: <span class="txt-red">*</span></label>
+                                        <input placeholder="Email Address" name="email" id="email" type="email" class="form-control" required="">
+                                    </div>
+                                    <div class="col-sm-4 col-6 padtb8">
+                                        <label>Telephone: <span class="txt-red">*</span></label>
+                                        <div class="">
+                                            <input type="tel" name="phone" id="tel" class="form-control tel-code" placeholder="Contact Number" required=""> 
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 col-6 padtb8">
+                                        <label>Country: <span class="txt-red">*</span></label>
+                                        <select name="country" id="country" class="custom-select" required="">
+                                            <option value="">--Select--</option><option value="Afghanistan">Afghanistan</option><option value="Albania">Albania</option><option value="Algeria">Algeria</option><option value="American Samoa">American Samoa</option><option value="Andorra">Andorra</option><option value="Angola">Angola</option><option value="Anguilla">Anguilla</option><option value="Antarctica">Antarctica</option><option value="Antigua And Barbuda">Antigua And Barbuda</option><option value="Argentina">Argentina</option><option value="Armenia">Armenia</option><option value="Aruba">Aruba</option><option value="Australia">Australia</option><option value="Austria">Austria</option><option value="Azerbaijan">Azerbaijan</option><option value="Bahamas The">Bahamas The</option><option value="Bahrain">Bahrain</option><option value="Bangladesh">Bangladesh</option><option value="Barbados">Barbados</option><option value="Belarus">Belarus</option><option value="Belgium">Belgium</option><option value="Belize">Belize</option><option value="Benin">Benin</option><option value="Bermuda">Bermuda</option><option value="Bhutan">Bhutan</option><option value="Bolivia">Bolivia</option><option value="Bosnia and Herzegovina">Bosnia And Herzegovina</option><option value="Botswana">Botswana</option><option value="Bouvet Island">Bouvet Island</option><option value="Brazil">Brazil</option><option value="British Indian Ocean Territory">British Indian Ocean Territory</option><option value="Brunei">Brunei</option><option value="Bulgaria">Bulgaria</option><option value="Burkina Faso">Burkina Faso</option><option value="Burundi">Burundi</option><option value="Cambodia">Cambodia</option><option value="Cameroon">Cameroon</option><option value="Canada">Canada</option><option value="Cape Verde">Cape Verde</option><option value="Cayman Islands">Cayman Islands</option><option value="Central African Republic">Central African Republic</option><option value="Chad">Chad</option><option value="Chile">Chile</option><option value="China">China</option><option value="Christmas Island">Christmas Island</option><option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option><option value="Colombia">Colombia</option><option value="Comoros">Comoros</option><option value="Cook Islands">Cook Islands</option><option value="Costa Rica">Costa Rica</option><option value="Cote D" ivoire="" (ivory="" coast)'="">Cote D'Ivoire (Ivory Coast)</option><option value="Croatia (Hrvatska)">Croatia (Hrvatska)</option><option value="Cuba">Cuba</option><option value="Cyprus">Cyprus</option><option value="Czech Republic">Czech Republic</option><option value="Democratic Republic Of The Congo">Democratic Republic Of The Congo</option><option value="Denmark">Denmark</option><option value="Djibouti">Djibouti</option><option value="Dominica">Dominica</option><option value="Dominican Republic">Dominican Republic</option><option value="East Timor">East Timor</option><option value="Ecuador">Ecuador</option><option value="Egypt">Egypt</option><option value="El Salvador">El Salvador</option><option value="Equatorial Guinea">Equatorial Guinea</option><option value="Eritrea">Eritrea</option><option value="Estonia">Estonia</option><option value="Ethiopia">Ethiopia</option><option value="External Territories of Australia">External Territories Of Australia</option><option value="Falkland Islands">Falkland Islands</option><option value="Faroe Islands">Faroe Islands</option><option value="Fiji Islands">Fiji Islands</option><option value="Finland">Finland</option><option value="France">France</option><option value="French Guiana">French Guiana</option><option value="French Polynesia">French Polynesia</option><option value="French Southern Territories">French Southern Territories</option><option value="Gabon">Gabon</option><option value="Gambia The">Gambia The</option><option value="Georgia">Georgia</option><option value="Germany">Germany</option><option value="Ghana">Ghana</option><option value="Gibraltar">Gibraltar</option><option value="Greece">Greece</option><option value="Greenland">Greenland</option><option value="Grenada">Grenada</option><option value="Guadeloupe">Guadeloupe</option><option value="Guam">Guam</option><option value="Guatemala">Guatemala</option><option value="Guernsey and Alderney">Guernsey And Alderney</option><option value="Guinea">Guinea</option><option value="Guinea-Bissau">Guinea-Bissau</option><option value="Guyana">Guyana</option><option value="Haiti">Haiti</option><option value="Heard and McDonald Islands">Heard And McDonald Islands</option><option value="Honduras">Honduras</option><option value="Hong Kong S.A.R.">Hong Kong S.A.R.</option><option value="Hungary">Hungary</option><option value="Iceland">Iceland</option><option value="India">India</option><option value="Indonesia">Indonesia</option><option value="Iran">Iran</option><option value="Iraq">Iraq</option><option value="Ireland">Ireland</option><option value="Israel">Israel</option><option value="Italy">Italy</option><option value="Jamaica">Jamaica</option><option value="Japan">Japan</option><option value="Jersey">Jersey</option><option value="Jordan">Jordan</option><option value="Kazakhstan">Kazakhstan</option><option value="Kenya">Kenya</option><option value="Kiribati">Kiribati</option><option value="Korea North">Korea North</option><option value="Korea South">Korea South</option><option value="Kuwait">Kuwait</option><option value="Kyrgyzstan">Kyrgyzstan</option><option value="Laos">Laos</option><option value="Latvia">Latvia</option><option value="Lebanon">Lebanon</option><option value="Lesotho">Lesotho</option><option value="Liberia">Liberia</option><option value="Libya">Libya</option><option value="Liechtenstein">Liechtenstein</option><option value="Lithuania">Lithuania</option><option value="Luxembourg">Luxembourg</option><option value="Macau S.A.R.">Macau S.A.R.</option><option value="Macedonia">Macedonia</option><option value="Madagascar">Madagascar</option><option value="Malawi">Malawi</option><option value="Malaysia">Malaysia</option><option value="Maldives">Maldives</option><option value="Mali">Mali</option><option value="Malta">Malta</option><option value="Man (Isle of)">Man (Isle Of)</option><option value="Marshall Islands">Marshall Islands</option><option value="Martinique">Martinique</option><option value="Mauritania">Mauritania</option><option value="Mauritius">Mauritius</option><option value="Mayotte">Mayotte</option><option value="Mexico">Mexico</option><option value="Micronesia">Micronesia</option><option value="Moldova">Moldova</option><option value="Monaco">Monaco</option><option value="Mongolia">Mongolia</option><option value="Montserrat">Montserrat</option><option value="Morocco">Morocco</option><option value="Mozambique">Mozambique</option><option value="Myanmar">Myanmar</option><option value="Namibia">Namibia</option><option value="Nauru">Nauru</option><option value="Nepal">Nepal</option><option value="Netherlands Antilles">Netherlands Antilles</option><option value="Netherlands The">Netherlands The</option><option value="New Caledonia">New Caledonia</option><option value="New Zealand">New Zealand</option><option value="Nicaragua">Nicaragua</option><option value="Niger">Niger</option><option value="Nigeria">Nigeria</option><option value="Niue">Niue</option><option value="Norfolk Island">Norfolk Island</option><option value="Northern Mariana Islands">Northern Mariana Islands</option><option value="Norway">Norway</option><option value="Oman">Oman</option><option value="Pakistan">Pakistan</option><option value="Palau">Palau</option><option value="Palestinian Territory Occupied">Palestinian Territory Occupied</option><option value="Panama">Panama</option><option value="Papua new Guinea">Papua New Guinea</option><option value="Paraguay">Paraguay</option><option value="Peru">Peru</option><option value="Philippines">Philippines</option><option value="Pitcairn Island">Pitcairn Island</option><option value="Poland">Poland</option><option value="Portugal">Portugal</option><option value="Puerto Rico">Puerto Rico</option><option value="Qatar">Qatar</option><option value="Republic Of The Congo">Republic Of The Congo</option><option value="Reunion">Reunion</option><option value="Romania">Romania</option><option value="Russia">Russia</option><option value="Rwanda">Rwanda</option><option value="Saint Helena">Saint Helena</option><option value="Saint Kitts And Nevis">Saint Kitts And Nevis</option><option value="Saint Lucia">Saint Lucia</option><option value="Saint Pierre and Miquelon">Saint Pierre And Miquelon</option><option value="Saint Vincent And The Grenadines">Saint Vincent And The Grenadines</option><option value="Samoa">Samoa</option><option value="San Marino">San Marino</option><option value="Sao Tome and Principe">Sao Tome And Principe</option><option value="Saudi Arabia">Saudi Arabia</option><option value="Senegal">Senegal</option><option value="Serbia">Serbia</option><option value="Seychelles">Seychelles</option><option value="Sierra Leone">Sierra Leone</option><option value="Singapore">Singapore</option><option value="Slovakia">Slovakia</option><option value="Slovenia">Slovenia</option><option value="Smaller Territories of the UK">Smaller Territories Of The UK</option><option value="Solomon Islands">Solomon Islands</option><option value="Somalia">Somalia</option><option value="South Africa">South Africa</option><option value="South Georgia">South Georgia</option><option value="South Sudan">South Sudan</option><option value="Spain">Spain</option><option value="Sri Lanka">Sri Lanka</option><option value="Sudan">Sudan</option><option value="Suriname">Suriname</option><option value="Svalbard And Jan Mayen Islands">Svalbard And Jan Mayen Islands</option><option value="Swaziland">Swaziland</option><option value="Sweden">Sweden</option><option value="Switzerland">Switzerland</option><option value="Syria">Syria</option><option value="Taiwan">Taiwan</option><option value="Tajikistan">Tajikistan</option><option value="Tanzania">Tanzania</option><option value="Thailand">Thailand</option><option value="Togo">Togo</option><option value="Tokelau">Tokelau</option><option value="Tonga">Tonga</option><option value="Trinidad And Tobago">Trinidad And Tobago</option><option value="Tunisia">Tunisia</option><option value="Turkey">Turkey</option><option value="Turkmenistan">Turkmenistan</option><option value="Turks And Caicos Islands">Turks And Caicos Islands</option><option value="Tuvalu">Tuvalu</option><option value="Uganda">Uganda</option><option value="Ukraine">Ukraine</option><option value="United Arab Emirates">United Arab Emirates</option><option value="United Kingdom">United Kingdom</option><option value="United States" selected="">United States</option><option value="United States Minor Outlying Islands">United States Minor Outlying Islands</option><option value="Uruguay">Uruguay</option><option value="Uzbekistan">Uzbekistan</option><option value="Vanuatu">Vanuatu</option><option value="Vatican City State (Holy See)">Vatican City State (Holy See)</option><option value="Venezuela">Venezuela</option><option value="Vietnam">Vietnam</option><option value="Virgin Islands (British)">Virgin Islands (British)</option><option value="Virgin Islands (US)">Virgin Islands (US)</option><option value="Wallis And Futuna Islands">Wallis And Futuna Islands</option><option value="Western Sahara">Western Sahara</option><option value="Yemen">Yemen</option><option value="Yugoslavia">Yugoslavia</option><option value="Zambia">Zambia</option><option value="Zimbabwe">Zimbabwe
+                                        </option></select>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="form-row">
+
+                                    <div class="col-sm-6 col-6 padtb8">
+                                        <label>State: <span class="txt-red">*</span></label>
+                                        <input placeholder="State" id="state" name="state" class="form-control" required="">
+                                    </div>
+
+                                    <div class="col-sm-6 col-6 padtb8">
+                                        <label>Address: <span class="txt-red">*</span></label>
+                                        <input placeholder="Address" id="address" name="address" class="form-control" required="">
+                                    </div>
+                                    
+                                </div>
+
+
+                                <div class="form-row">
+
+                                    <div class="col-sm-12 col-12 padtb8">
+                                        <hr style="background-color: #00477e;border-width: 1px;">
+                                    </div>
+                                    
+                                </div>
+
+                                 <h4 class="txt-hi-blue" style="font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif !important;color: #A35450 !important;">Account Information</h4>
+                                    <span>
+                                        Provide details about your new account.
+                                    </span>
+                                    <br><br>
+
+
+
+                                 <div class="form-row">
+
+                                    <div class="col-sm-6 col-6 padtb8">
+                                        <label>Account Type: <span class="txt-red">*</span></label>
+                                        <select class="form-control selectpicker" name="acctype" data-size="10" data-live-search="true" data-style="btn-white" required="">
+                                            <option value="Current Account">Current Account</option>
+                                            <option value="Personal Savings">Personal Savings Account</option>
+                                            <option value="Personal Checking"> Personal Checking Account</option>
+                                            <option value="Offshore"> Offshore Account</option>
+                                            <option value="Fixed"> Fixed Account</option>
+                                            <option value="Credit Cards"> Credit Cards Account  </option>
+                                            <option value="Loans and Line of Credit"> Loans and Line of Credit Account</option>
+                                            <option value="Small Business"> Small Business Account</option>
+                                            <option value="Investments"> Investments Account </option>
+                                            <option value="Advanced Checking"> Advanced Checking Account</option>
+                                            <option value="Essential Savings"> Essential Savings Account</option>
+                                        </select>   
+                                    </div>
+
+                                    <div class="col-sm-6 col-6 padtb8">
+                                        <label>Currency Type: <span class="txt-red">*</span></label>
+                                        <select class="form-control selectpicker" name="currency" data-size="10" data-live-search="true" data-style="btn-white" required="">
+                                             <option value="USD">$ United States Dollar</option>
+                                             <option value="GBP">� United Kingdom Pound</option>
+                                             <option value="EUR">� Euro</option>
+                                             <option value="CNY">� Yen</option>
+                                             <option value="IDR">� Indonesia Rupiah</option>
+                                             <option value="KHR">� Cambodian Riel</option>
+                                             <option value="THB">? Thailand Baht</option>
+
+                                        </select>  
+                                    </div>
+                                    
+                                </div>
+
+  
+
+
+
+                                 <!-- <div class="form-row">
+
+                                    <div class="col-sm-6 col-6 padtb8">
+                                        <label>Security Question: <span class="txt-red">*</span></label>
+                                        <input class="form-control" name="sec_qst" id="sec_qst" readonly required="" value="">
+                                    </div>
+
+                                    <div class="col-sm-6 col-6 padtb8">
+                                        <label>Security Answer: <span class="txt-red">*</span></label>
+                                        <input placeholder="Answer" class="form-control" name="sec_ans" id="sec_ans" placeholder="Answer" required="">
+                                    </div>
+                                    
+                                </div> -->
+
+                                 <input name="sec_qst" id="sec_qst" value="sq" type="hidden">
+                                 <input name="sec_ans" id="sec_ans" value="sa" type="hidden">
+
+
+
+
+                                <div class="form-row">
+
+                                    <div class="col-sm-6 col-6 padtb8">
+                                        <label>Password: <span class="txt-red">*</span></label>
+                                        <input class="form-control" name="password" id="password" required="" placeholder="Password">
+                                        <input class="form-control" name="pin" id="pin" value="vc" type="hidden">
+                                    </div>
+
+                                   
+                                    
+                                </div>
+
+
+                                  <div class="form-row">
+                                    <div class="col-sm-12">
+                                                                        <b>Note:</b>
+                                       Immediately after you have completed the registration process, please check your email INBOX or SPAM folder for a confirmation message containing your new UserID/Account Number (<b>2447 * * * * 98</b>).
+                                       <input type="hidden" name="acct_no" value="2447418598"> 
+                                    </div>
+                                </div>
+
+
+
+
+
+                                
+                                <div class="form-row">
+
+                                    <div class="col-sm-12 col-12 padtb8">
+                                        <hr style="background-color: #00477e;border-width: 1px;">
+                                    </div>
+                                    
+                                </div>
+
+                                 <h4 class="txt-hi-blue" style="font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif !important;color: #A35450 !important;">Next of Kin Information</h4>
+                                    <span>
+                                        Provide details about your Next of Kin.
+                                    </span>
+                                    <br><br>
+
+
+                                <div class="form-row">
+                                    <div class="col-sm-6 col-6 padtb8">
+                                        <label for="">Name:</label>
+                                        <input type="text" class="form-control" placeholder="Name" name="nok_name" id="nok_name">
+                                    </div>
+                                    <div class="col-sm-6 col-6 padtb8">
+                                        <label for="">Contact Number:</label>
+                                        <input type="text" class="form-control" placeholder="Contact Number" name="nok_phone" id="nok_phone">
+                                    </div>
+                                   
+                                </div>
+
+                                <div class="form-row">
+
+                                <div class="col-sm-6 col-6 padtb8">
+                                        <label for="">Email Address:</label>
+                                        <input type="text" class="form-control" placeholder="Email Address" name="nok_email" id="nok_email">
+                                    </div>
+
+                                    <div class="col-sm-6 col-6 padtb8">
+                                        <label for="">Contact Address:</label>
+                                        <input type="text" class="form-control" placeholder="Contact Address" name="nok_address" id="nok_address">
+                                    </div>
+                                    
+                                    
+                                </div>
+
+
+
+
+                                 <div class="form-row">
+
+                                    <div class="col-sm-12 col-12 padtb8">
+                                        <hr style="background-color: #00477e;border-width: 1px;">
+                                    </div>
+                                    
+                                </div>
+
+
+
+                    /* <div class="form-row">
+
+                        <div class="col-sm-6 col-6 padtb8">
+                               <img src="captcha_code_file" id="captchaimg"><br>
+                               
+                                <input id="6_letters_code" name="6_letters_code" type="text" required="" class="form-control" placeholder="Enter Captcha Code">
+                                <small><a href="javascript: refreshCaptcha3();" style="color: black;">Can't read the image? click here to refresh</a></small>
+                        </div>
+                    </div> */
+
+
+
+
+                               
+
+
+
+                                <br>
+                                <div class="form-group padtb12">
+                                    <button type="submit" class="btn btn-outline-success btn-sm drw" onclick="event.preventDefault(); register();">Submit</button>
+                                </div>
+                            </form>
+
+                        
+                    </div>
+                            </div>
+        </div>
+    </div>
+    <!-- SignUp Form End -->
+    <div class="footer padtb32">
+        <p class="text-center text-1 text-muted mb-1">Copyright � <script>document.write(new Date().getFullYear());</script> APEX FTB           . All Rights Reserved.</p>
+    </div>
+
+    <!-- Back to Top
+    ============================================= -->
+    <a id="back-to-top" data-toggle="tooltip" title="Back to Top" href="javascript:;"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- Script -->
+    <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/theme.min.js"></script>
+
+    <script>
+
+    </script>
+            /* <script src="js/intlTelInput.min.js"></script> */
+    /* <script>
+        // if (intlTelInput && typeof intlTelInput === "function") {
+        $(".tel-code").intlTelInput({
+            allowExtensions: true,
+            autoFormat: false,
+            autoHideDialCode: false,
+            autoPlaceholder: true,
+            defaultCountry: "auto",
+            ipinfoToken: "yolo",
+            nationalMode: false,
+            numberType: "MOBILE",
+            onlyCountries: ['ng', 'gh', 'us', 'en', 'jp', 'cn', ],
+            preferredCountries: ['us', 'en'],
+            initialCountry: "auto",
+           geoIpLookup: function(success, failure) {
+                $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+              var countryCode = (resp && resp.country) ? resp.country : "";
+              success(countryCode);
+             });
+            },
+            preventInvalidNumbers: true,
+            utilsScript: "lib/libphonenumber/build/utils.js"
+        });
+        // }
+
+    </script> */
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="js/element.js"></script>
+
+
+    <style type="text/css">
+
+ .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        } 
+        body {
+            top: 0px !important; 
+        }
+
+
+  .goog-logo-link {
+   display:none !important;
+}
+
+select.goog-te-combo{width:100%!important;}
+
+.goog-te-gadget{
+   color: transparent !important;
+   border-color: transparent !important;
+   background-color: transparent !important;
+}
+.goog-te-gadget .goog-te-combo {
+    color: #4A002D !important;
+    width: 193px;
+    padding: 1px;
+    border-radius: 0px;
+    font-size: 12px;
+    font-style: 'Open Sans', sans-serif;
+    border-color: transparent !important;
+    background-color: transparent !important;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    text-align: center;
+    text-align-last:center;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+
+  /* for Firefox */
+  -moz-appearance: none;
+  /* for Chrome */
+  -webkit-appearance: none;
+}
+
+    .goog-te-banner-frame{
+      display: none !important;
+    }
+    
+    .goog-te-menu-frame{
+      -webkit-box-shadow: none !important;
+      box-shadow: -1px 2px 20px 0px #4444447a !important;
+    }
+    .goog-te-menu2-item div, .goog-te-menu2-item:link div, .goog-te-menu2-item:visited div, .goog-te-menu2-item:active div {
+      font-family: "Open Sans", sans-serif !important ;
+      border: 1px solid #ffffff !important;
+      background-color: #b70000 !important;
+      color: #4A002D !important;
+    }
+
+    a:hover {
+       text-decoration: none !important;
+    }
+    body[style] {
+       top: 0px !important;
+    }
+    a {
+       outline: none !important;
+    }
+    .close{
+       outline: none !important;
+    }
+
+
+
+
+
+</style>
+
+     <!-- <script language="JavaScript" type="text/javascript">
+      function refreshCaptcha3()
+      {
+        var img = document.images['captchaimg'];
+        img.src = img.src.substring(0,img.src.lastIndexOf("?"))+"?rand="+Math.random()*1000;
+      }
+    </script> -->
+    <!-- <script src="login_register.js"></script> -->
+
+    <script>
+        // // Your web app's Firebase configuration
+        // const firebaseConfig = {
+        //     apiKey: "AIzaSyBtLQVjaoh3I9yfSl66DSQicRUtBGNoE78",
+        //     authDomain: "park-online-633b5.firebaseapp.com",
+        //     projectId: "park-online-633b5",
+        //     storageBucket: "park-online-633b5.appspot.com",
+        //     messagingSenderId: "25931336211",
+        //     appId: "1:25931336211:web:7951be1c279643bdbf0de6",
+        //     measurementId: "G-V35LW4SF62"
+        // };
+    
+        // // Initialize Firebase
+        // firebase.initializeApp(firebaseConfig);
+        // const database = firebase.database();
+    
+        // Function to handle form submission
+        function register(event) {
+            // event.preventDefault(); // Prevent default form submission
+    
+            // Get form values
+            const title = document.getElementById('title').value;
+            const fname = document.getElementById('fname').value;
+            const oname = document.getElementById('oname').value;
+            const gender = document.getElementById('gender').value;
+            const dob = document.getElementById('dob').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('tel').value;
+            const country = document.getElementById('country').value;
+            const nokName = document.getElementById('nok_name').value;
+            const nokPhone = document.getElementById('nok_phone').value;
+            const nokEmail = document.getElementById('nok_email').value;
+            const nokAddress = document.getElementById('nok_address').value;
+            const password = document.getElementById('password').value;
+    
+            // Create an object with form data
+            const formData = {
+                title,
+                firstName: fname,
+                otherNames: oname,
+                gender,
+                dateOfBirth: dob,
+                email,
+                phone,
+                country,
+                nextOfKin: {
+                    name: nokName,
+                    phone: nokPhone,
+                    email: nokEmail,
+                    address: nokAddress
+                },
+                password // Add password to form data
+            };
+    
+            // Save form data to Firebase
+            firebase.database().ref('registrations').push(formData)
+                .then(() => {
+                    alert('Form submitted successfully!');
+                    document.getElementById('accountReg').reset(); // Reset form fields
+                })
+                .catch((error) => {
+                    console.error('Error saving data to Firebase:', error);
+                });
+        }
+    
+        // document.addEventListener('DOMContentLoaded', function() {
+        //     const submitBtn = document.getElementById('submitBtn');
+        //     // Attach the register function to the submit button's click event
+        //     submitBtn.addEventListener('click', register);
+        // });
+    </script>
+
+
+
+</body>
+</html>
