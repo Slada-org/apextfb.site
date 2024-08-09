@@ -28,7 +28,7 @@ function generateAccountNumber() {
 async function sendRegistrationEmail(name, email, accountNumber) {
     const data = {
         service_id: 'service_u4bxj8p', // Your EmailJS service ID
-        template_id: 'template_z3c8l8d', // Your EmailJS template ID, Create a new template ID
+        template_id: 'template_n387z6f', // Your EmailJS template ID, Create a new template ID
         user_id: 'wFjLvmBKtil7JR8Bd', // Your EmailJS user ID
         template_params: {
             to_name: name,
