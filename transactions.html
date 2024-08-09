@@ -31,6 +31,14 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+  <script src="firebaseInit.js" type="module"></script>
+
+<!-- Separate script block to execute getUserDetails() -->
+<script type="module">
+    console.log('Working..');
+    getUserDetails(); // Execute the function
+</script>
+
   <!-- Google Font -->
   <link rel="stylesheet" href="css/css.css">
 
@@ -227,7 +235,7 @@ body {
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>Links</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span style="font-size:18px; font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif;">ALEX DAVIDSON BONILLA</span>
+      <span style="font-size:18px; font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif;"><p class="name">Loading...</p></span>
       
 
     </a>
@@ -283,11 +291,11 @@ body {
               <li class="user-header">
                 <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="img-circle">
 
-                <p>
-                  ALEX DAVIDSON BONILLA 
+                <!-- <p>
+                  Loading... 
                   <small>3011 Lakimau St, Honolulu, HI 96817</small>
                   <small>Hawaii, United States</small>
-                </p>
+                </p> -->
               </li>
               <!-- Menu Body -->
 
@@ -321,7 +329,7 @@ body {
       <div class="user-panel">
         <div class="pull-center image">
          <center> 
-            <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="2img-circle" alt="ALEX DAVIDSON BONILLA" width="120px" height="150px" style="border-radius: 5px;"><br>
+            <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="2img-circle" alt="Loading..." width="120px" height="150px" style="border-radius: 5px;"><br>
             
             <div style="color: white; font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif;"> &gt;&gt; <i class="fa fa-circle text-success blink" style="color: #36F026; "></i>&nbsp; Online &lt;&lt; </div>
            
@@ -411,13 +419,13 @@ body {
           
         </li>
         
-        <li>
+        <!-- <li>
           <a href="bit-payment.html">
             <i class="fa fa-money"></i> <span>Fund My Account</span>
             
           </a>
           
-        </li>
+        </li> -->
 
         <li>
           <a href="change-password.html">
@@ -1433,47 +1441,47 @@ body {
                                             </tr>
 
                                             <tr>
-                                                <td>Account Name</td>
-                                                <td style="color:#005b7a">ALEX DAVIDSON BONILLA</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Phone Number</td>
-                                                <td style="color:#005b7a">+15xxx413 xxx </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Email Address</td>
-                                                <td style="color:#005b7a">bonillaalexd9@gmail.com</td>
- 
-                                           </tr>
+                                              <td>Account Name</td>
+                                              <td style="color:#005b7a"><p class="jname">Loading...</p></td>
+                                          </tr>
+                                          <tr>
+                                              <td>Phone Number</td>
+                                              <td style="color:#005b7a"><p class="user-phone">Loading...</p></td>
+                                          </tr>
+                                          <tr>
+                                              <td>Email Address</td>
+                                              <td style="color:#005b7a"><p class="user-email">Loading...</p></td>
 
-                                            <!-- <tr>
-                                                <td>Contact Address</td>
-                                                <td style="color:#0073b7"></td>
-                                            </tr> -->
-                                            <tr>
-                                                <td>State, Country</td>
-                                                <td style="color:#005b7a">Hawaii, United States</td>
-                                            </tr>
-                                     
-                                            <tr>
-                                                <td>Account Number</td>
-                                                <td style="color:#005b7a">6941400807</td>
-                                            </tr>
-                                            <!-- <tr>
-                                                <td>Account PIN Code</td>
-                                                <td style="color:#0073b7"></td>
-                                            </tr> -->
-                                            <tr>
-                                                <td>Account Balance</td>
-                                                <td style="color:green;"><font size="4px">$1,267,040.00&nbsp;&nbsp;USD</font></td>
-                                            </tr>
-                                            <tr> 
-                                                <td></td>
-                                                <td>
-                                                <form action="fundtransfer">
-                                                    <input class="btn btn-primary btn-xs" type="submit" value="Money Transfer">
-                                                </form></td>
-                                            </tr>
+                                         </tr>
+
+                                          <!-- <tr>
+                                              <td>Contact Address</td>
+                                              <td style="color:#0073b7"></td>
+                                          </tr> -->
+                                          <!-- <tr>
+                                              <td>State, Country</td>
+                                              <td style="color:#005b7a">Hawaii, United States</td>
+                                          </tr> -->
+                                   
+                                          <tr>
+                                              <td>Account Number</td>
+                                              <td style="color:#005b7a"><p class="user-account">Loading...</p></td>
+                                          </tr>
+                                          <!-- <tr>
+                                              <td>Account PIN Code</td>
+                                              <td style="color:#0073b7"></td>
+                                          </tr> -->
+                                          <tr>
+                                              <td>Account Balance</td>
+                                              <td style="color:green;"><font size="4px">$1,267,040.00&nbsp;&nbsp;USD</font></td>
+                                          </tr>
+                                          <tr> 
+                                              <td></td>
+                                              <td>
+                                              <form action="fundtransfer.html">
+                                                  <input class="btn btn-primary btn-xs" type="submit" value="Money Transfer">
+                                              </form></td>
+                                          </tr>
                                             
 
                                         </tbody>

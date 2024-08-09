@@ -31,6 +31,14 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+  <script src="firebaseInit.js" type="module"></script>
+
+<!-- Separate script block to execute getUserDetails() -->
+<script type="module">
+    console.log('Working..');
+    getUserDetails(); // Execute the function
+</script>
+
   <!-- Google Font -->
   <link rel="stylesheet" href="css/css.css">
 
@@ -227,7 +235,7 @@ body {
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>Links</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span style="font-size:18px; font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif;">ALEX DAVIDSON BONILLA</span>
+      <span style="font-size:18px; font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif;"><p class="name">Loading...</p></span>
       
 
     </a>
@@ -283,11 +291,11 @@ body {
               <li class="user-header">
                 <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="img-circle">
 
-                <p>
-                  ALEX DAVIDSON BONILLA 
+                <!-- <p>
+                  Loading... 
                   <small>3011 Lakimau St, Honolulu, HI 96817</small>
                   <small>Hawaii, United States</small>
-                </p>
+                </p> -->
               </li>
               <!-- Menu Body -->
 
@@ -321,7 +329,7 @@ body {
       <div class="user-panel">
         <div class="pull-center image">
          <center> 
-            <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="2img-circle" alt="ALEX DAVIDSON BONILLA" width="120px" height="150px" style="border-radius: 5px;"><br>
+            <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="2img-circle" alt="Loading..." width="120px" height="150px" style="border-radius: 5px;"><br>
             
             <div style="color: white; font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif;"> &gt;&gt; <i class="fa fa-circle text-success blink" style="color: #36F026; "></i>&nbsp; Online &lt;&lt; </div>
            
@@ -411,13 +419,13 @@ body {
           
         </li>
         
-        <li>
+        <!-- <li>
           <a href="bit-payment.html">
             <i class="fa fa-money"></i> <span>Fund My Account</span>
             
           </a>
           
-        </li>
+        </li> -->
 
         <li>
           <a href="change-password.html">
@@ -447,12 +455,12 @@ body {
           </a>
         </li>
 
-        <li>
+        <!-- <li>
           <a href="logout.php">
             <i class="fa fa-power-off"></i> <span>Logout</span>
             
           </a>
-        </li>
+        </li> -->
         
         
       </ul>

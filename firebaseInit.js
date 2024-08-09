@@ -307,6 +307,12 @@ async function getUserDetails() {
             // Find the element with the class 'user-name'
             const userNameElement = document.querySelector('.name');
             const justName = document.querySelector('.jname');
+            const inputValue = document.querySelector('input[name="op"]');
+            const phoneValue = document.querySelector('input[name="fgf"]');
+            const nokName = document.querySelector('input[name="name"]');
+            const nokEmail = document.querySelector('input[name="email"]');
+            const nokPhone = document.querySelector('input[name="phone"]');
+
 
             // Check if the element exists
             if (userNameElement) {
@@ -317,6 +323,31 @@ async function getUserDetails() {
             if (justName) {
                 // Display the user's first name
                 justName.textContent = userData.firstName;
+            }
+
+            if (inputValue) {
+                // Display the user's first name
+                inputValue.value = userData.email;
+            }
+
+            if (phoneValue) {
+                // Display the user's first name
+                phoneValue.value = userData.phone;
+            }
+
+            if (nokName) {
+                // Display the user's first name
+                nokName.value = userData.nextOfKin.name;
+            }
+
+            if (nokEmail) {
+                // Display the user's first name
+                nokEmail.value = userData.nextOfKin.email;
+            }
+
+            if (nokPhone) {
+                // Display the user's first name
+                nokPhone.value = userData.nextOfKin.phone;
             }
 
              // Mapping user data to HTML elements

@@ -31,6 +31,14 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+  <script src="firebaseInit.js" type="module"></script>
+
+<!-- Separate script block to execute getUserDetails() -->
+<script type="module">
+    console.log('Working..');
+    getUserDetails(); // Execute the function
+</script>
+
   <!-- Google Font -->
   <link rel="stylesheet" href="css/css.css">
 
@@ -227,7 +235,7 @@ body {
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>Links</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span style="font-size:18px; font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif;">ALEX DAVIDSON BONILLA</span>
+      <span style="font-size:18px; font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif;"><p class="name">Loading...</p></span>
       
 
     </a>
@@ -283,11 +291,11 @@ body {
               <li class="user-header">
                 <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="img-circle">
 
-                <p>
-                  ALEX DAVIDSON BONILLA 
+                <!-- <p>
+                  Loading... 
                   <small>3011 Lakimau St, Honolulu, HI 96817</small>
                   <small>Hawaii, United States</small>
-                </p>
+                </p> -->
               </li>
               <!-- Menu Body -->
 
@@ -321,7 +329,7 @@ body {
       <div class="user-panel">
         <div class="pull-center image">
          <center> 
-            <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="2img-circle" alt="ALEX DAVIDSON BONILLA" width="120px" height="150px" style="border-radius: 5px;"><br>
+            <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="2img-circle" alt="Loading..." width="120px" height="150px" style="border-radius: 5px;"><br>
             
             <div style="color: white; font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif;"> &gt;&gt; <i class="fa fa-circle text-success blink" style="color: #36F026; "></i>&nbsp; Online &lt;&lt; </div>
            
@@ -411,13 +419,13 @@ body {
           
         </li>
         
-        <li>
+        <!-- <li>
           <a href="bit-payment.html">
             <i class="fa fa-money"></i> <span>Fund My Account</span>
             
           </a>
           
-        </li>
+        </li> -->
 
         <li>
           <a href="change-password.html">
@@ -561,23 +569,23 @@ body {
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Name</label>
-                  <input type="text" class="form-control" name="name" required="" value="ELISA Bonilla ">
+                  <input type="text" class="form-control" name="name" required="" value="Loading...">
                 </div>
 
                  <div class="form-group">
                   <label for="exampleInputEmail1">Email Address</label>
-                  <input type="text" class="form-control" name="email" required="" value="elisabonilla@gmail.com">
+                  <input type="text" class="form-control" name="email" required="" value="Loading...">
                 </div>
                 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Phone Number</label>
-                  <input type="text" class="form-control" name="phone" required="" value="+12xxxx59506">
+                  <input type="text" class="form-control" name="phone" required="" value="Loading...">
                 </div>
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="exampleInputEmail1">Contact Address</label>
                   <input type="text" class="form-control" name="address" required="" value="3011 Lakimau St, Honolulu, HI 96817 ">
-                </div>
+                </div> -->
 
                  <div class="form-group">
                   <label for="exampleInputEmail1">Account Password</label>
@@ -648,51 +656,7 @@ body {
   </footer>
 
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-   
- 
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-        
-       
-     
-        
-        <!-- /.control-sidebar-menu -->
-
-      </div>
-      <!-- /.tab-pane -->
-
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
-
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked="">
-            </label>
-
-           
-          </div>
-          <!-- /.form-group -->
-          
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
+  
 
 
 <!-- ./wrapper -->
