@@ -156,51 +156,68 @@ async function register() {
     const password = document.getElementById('password').value;
 
     if (password === '') {
-        return alert('Password is Required');
+        return alert('Password is required');
     };
 
     if (email === '') {
-        return alert('Password is Required');
+        return alert('Email is required');
     };
 
     if (fname === '') {
-        return alert('Password is Required');
-    };
-
-    // Generate a unique account number
-    const accountNumber = generateAccountNumber();
-
-    // Create an object with form data
-    const formData = {
-        accountNumber,
-        title,
-        firstName: fname,
-        otherNames: oname,
-        gender,
-        dateOfBirth: dob,
-        email,
-        phone,
-        country,
-        nextOfKin: {
-            name: nokName,
-            phone: nokPhone,
-            email: nokEmail,
-            address: nokAddress
-        },
-        password // Add password to form data
+        return alert('First name is required');
     };
 
     try {
+        // Reference to the root of the users in Firebase
+        const usersRef = ref(database, 'users');
+        const emailQuery = query(usersRef, orderByChild('email'), equalTo(email));
+        
+        const snapshot = await get(emailQuery);
+
+        if (snapshot.exists()) {
+            // Email already exists
+            alert('This email is already registered.');
+            return; // Stop the registration process
+        }
+
+        // Generate a unique account number
+        const accountNumber = generateAccountNumber();
+
+        // Create an object with form data
+        const formData = {
+            accountNumber,
+            title,
+            firstName: fname,
+            otherNames: oname,
+            gender,
+            dateOfBirth: dob,
+            email,
+            phone,
+            country,
+            nextOfKin: {
+                name: nokName,
+                phone: nokPhone,
+                email: nokEmail,
+                address: nokAddress
+            },
+            password // Add password to form data
+        };
+
         // Save form data to Firebase
         const userRef = ref(database, 'users/' + accountNumber);
-        await set(userRef, formData)
+        await set(userRef, formData);
+
+        // Send registration email
         await sendRegistrationEmail(fname, email, accountNumber);
-        // alert('Registration successful! Your account number is: ' + accountNumber);
-        window.location.href = 'login.html'; // Redirect to login page
+
+        // Redirect to login page
+        window.location.href = 'login.html';
     } catch (error) {
-        console.error('Error saving data to Firebase or sending email:', error);
+        console.error('Error during registration:', error);
+        alert('An error occurred during registration. Please try again.');
     }
 }
+
 
 // Function to handle login
 // Function to handle login
