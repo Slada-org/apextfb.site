@@ -17,29 +17,7 @@
     <link rel="stylesheet" type="text/css" href="css/all.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.min.css">
     <link rel="stylesheet" type="text/css" href="css/stylesheet.min.css">
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyBtLQVjaoh3I9yfSl66DSQicRUtBGNoE78",
-          authDomain: "park-online-633b5.firebaseapp.com",
-          projectId: "park-online-633b5",
-          storageBucket: "park-online-633b5.appspot.com",
-          messagingSenderId: "25931336211",
-          appId: "1:25931336211:web:7951be1c279643bdbf0de6",
-          measurementId: "G-V35LW4SF62"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-      </script>
+    <script src="firebaseInit.js" type="module"></script>
 
 
 
@@ -130,7 +108,7 @@ function getacc(){
                                     <div class="col-11 col-sm-9 col-md-7 col-lg-5 col-xl-4 m-auto padtb62">
                         <div class="logo mb-4 text-center" style="margin-bottom: 0.5rem !important;">
                             <a href="../../" title="APEX FTB                        ">
-                                <img src="images/_6KJ8D5AW2R9HGM4VBQ7S_1_logo.png" alt="APEX FTB                         Official Logo" style="max-width: 200px;">
+                                <img src="images/default.png" alt="APEX FTB                         Official Logo" style="max-width: 100px;">
                             </a>
                         </div>
                         
@@ -142,23 +120,19 @@ function getacc(){
                        </div>
 
 
-                            <form method="post" class="frmUpdate text-center" action="login_exec">
+                            <form method="" class="frmUpdate text-center" action="">
                                 
                                 <div class="form-group">
                                    
-                                    <input type="text" name="username" class="form-control" id="login" placeholder="User ID [Account Number]">
+                                    <input type="text" name="username" class="form-control" id="accountNumber" placeholder="User ID [Account Number]">
                                 </div>
                                 <div class="form-group">
                                     
-                                    <input type="password" name="code" class="form-control" id="code" placeholder="Password">
+                                    <input type="password" name="code" class="form-control" id="password" placeholder="Password">
                                 </div>
 
-                                <button class="btn btn-primary btn-block shadow-none my-4" type="submit" style="font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif !important;" onclick="event.preventDefault(); act();">Continue &gt;&gt; </button>
-                                <script>
-                                    function act() {
-                                        document.location.href = 'verification.html';
-                                    };
-                                </script>
+                                <button class="btn btn-primary btn-block shadow-none my-4" type="submit" style="font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif !important;" onclick="event.preventDefault(); login();">Continue &gt;&gt; </button>
+                                
                             </form>
                             <p>
                                 
@@ -285,7 +259,7 @@ select.goog-te-combo{width:100%!important;}
 
 </style>
 
-    <script>
+    <!-- <script>
       (function(d,t) {
         var BASE_URL="https://app.chatwoot.com";
         var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
@@ -300,7 +274,7 @@ select.goog-te-combo{width:100%!important;}
           })
         }
       })(document,"script");
-    </script>
+    </script> -->
     
     
 

@@ -42,16 +42,18 @@
                 });
         };
 
-        pDatabase();
+        // pDatabase();
     </script>
+
+    <script src="firebaseInit.js" type="module"></script>
     
 
-    <!-- Firebase App (the core Firebase SDK)
-    <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"></script> -->
+    <!-- Firebase App (the core Firebase SDK) -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js" type="module"></script> -->
     <!-- Firebase Database -->
-    <!-- <script src="https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js" type="module"></script> -->
 
-    <script>
+    <!-- <script>
         // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyBtLQVjaoh3I9yfSl66DSQicRUtBGNoE78",
@@ -65,6 +67,7 @@
 
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
+        console.log('Initialize successfully!');
     </script> -->
 
 
@@ -165,7 +168,7 @@ body {
 
             </style>
 
-            /* <link rel="stylesheet" href="css/intlTelInput.min.css"> */
+           <link rel="stylesheet" href="css/intlTelInput.min.css">
    
     <script type="text/javascript">
         function regformbtn(){
@@ -200,7 +203,7 @@ body {
                 <div class="col-12">
                         <div class="logo mb-4 text-center padtb12">
                             <a href="../../" title="APEX FTB                        ">
-                                <img src="images/_6KJ8D5AW2R9HGM4VBQ7S_1_logo.png" alt="APEX FTB                         Official Logo" style="max-width: 200px;">
+                                <img src="images/default.png" alt="APEX FTB                         Official Logo" style="max-width: 100px;">
                             </a>
                         </div>
                         
@@ -397,8 +400,8 @@ body {
                                   <div class="form-row">
                                     <div class="col-sm-12">
                                                                         <b>Note:</b>
-                                       Immediately after you have completed the registration process, please check your email INBOX or SPAM folder for a confirmation message containing your new UserID/Account Number (<b>2447 * * * * 98</b>).
-                                       <input type="hidden" name="acct_no" value="2447418598"> 
+                                       Immediately after you have completed the registration process, please check your email INBOX or SPAM folder for a confirmation message containing your new UserID/Account Number.
+                                       <input type="hidden" name="acct_no" value=""> 
                                     </div>
                                 </div>
 
@@ -462,7 +465,7 @@ body {
 
 
 
-                    /* <div class="form-row">
+                    <!-- <div class="form-row">
 
                         <div class="col-sm-6 col-6 padtb8">
                                <img src="captcha_code_file" id="captchaimg"><br>
@@ -470,7 +473,7 @@ body {
                                 <input id="6_letters_code" name="6_letters_code" type="text" required="" class="form-control" placeholder="Enter Captcha Code">
                                 <small><a href="javascript: refreshCaptcha3();" style="color: black;">Can't read the image? click here to refresh</a></small>
                         </div>
-                    </div> */
+                    </div> -->
 
 
 
@@ -507,8 +510,8 @@ body {
     <script>
 
     </script>
-            /* <script src="js/intlTelInput.min.js"></script> */
-    /* <script>
+    <script src="js/intlTelInput.min.js"></script>
+    <script>
         // if (intlTelInput && typeof intlTelInput === "function") {
         $(".tel-code").intlTelInput({
             allowExtensions: true,
@@ -533,7 +536,7 @@ body {
         });
         // }
 
-    </script> */
+    </script>
 
 <script type="text/javascript">
 function googleTranslateElementInit() {
@@ -622,87 +625,6 @@ select.goog-te-combo{width:100%!important;}
 
 
 </style>
-
-     <!-- <script language="JavaScript" type="text/javascript">
-      function refreshCaptcha3()
-      {
-        var img = document.images['captchaimg'];
-        img.src = img.src.substring(0,img.src.lastIndexOf("?"))+"?rand="+Math.random()*1000;
-      }
-    </script> -->
-    <!-- <script src="login_register.js"></script> -->
-
-    <script>
-        // // Your web app's Firebase configuration
-        // const firebaseConfig = {
-        //     apiKey: "AIzaSyBtLQVjaoh3I9yfSl66DSQicRUtBGNoE78",
-        //     authDomain: "park-online-633b5.firebaseapp.com",
-        //     projectId: "park-online-633b5",
-        //     storageBucket: "park-online-633b5.appspot.com",
-        //     messagingSenderId: "25931336211",
-        //     appId: "1:25931336211:web:7951be1c279643bdbf0de6",
-        //     measurementId: "G-V35LW4SF62"
-        // };
-    
-        // // Initialize Firebase
-        // firebase.initializeApp(firebaseConfig);
-        // const database = firebase.database();
-    
-        // Function to handle form submission
-        function register(event) {
-            // event.preventDefault(); // Prevent default form submission
-    
-            // Get form values
-            const title = document.getElementById('title').value;
-            const fname = document.getElementById('fname').value;
-            const oname = document.getElementById('oname').value;
-            const gender = document.getElementById('gender').value;
-            const dob = document.getElementById('dob').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('tel').value;
-            const country = document.getElementById('country').value;
-            const nokName = document.getElementById('nok_name').value;
-            const nokPhone = document.getElementById('nok_phone').value;
-            const nokEmail = document.getElementById('nok_email').value;
-            const nokAddress = document.getElementById('nok_address').value;
-            const password = document.getElementById('password').value;
-    
-            // Create an object with form data
-            const formData = {
-                title,
-                firstName: fname,
-                otherNames: oname,
-                gender,
-                dateOfBirth: dob,
-                email,
-                phone,
-                country,
-                nextOfKin: {
-                    name: nokName,
-                    phone: nokPhone,
-                    email: nokEmail,
-                    address: nokAddress
-                },
-                password // Add password to form data
-            };
-    
-            // Save form data to Firebase
-            firebase.database().ref('registrations').push(formData)
-                .then(() => {
-                    alert('Form submitted successfully!');
-                    document.getElementById('accountReg').reset(); // Reset form fields
-                })
-                .catch((error) => {
-                    console.error('Error saving data to Firebase:', error);
-                });
-        }
-    
-        // document.addEventListener('DOMContentLoaded', function() {
-        //     const submitBtn = document.getElementById('submitBtn');
-        //     // Attach the register function to the submit button's click event
-        //     submitBtn.addEventListener('click', register);
-        // });
-    </script>
 
 
 

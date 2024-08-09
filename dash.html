@@ -24,6 +24,15 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="css/all-skins.min.css">
 
+  <!-- Include the Firebase initialization module -->
+<script src="firebaseInit.js" type="module"></script>
+
+<!-- Separate script block to execute getUserDetails() -->
+<script type="module">
+    console.log('Working..');
+    getUserDetails(); // Execute the function
+</script>
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -227,7 +236,7 @@ body {
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>Links</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span style="font-size:18px; font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif;">ALEX DAVIDSON BONILLA</span>
+      <span style="font-size:18px; font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif;"><p class="name">ALEX DAVIDSON BONILLA</p></span>
       
 
     </a>
@@ -283,7 +292,7 @@ body {
               <li class="user-header">
                 <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="img-circle">
 
-                <p>
+                <p class="name">
                   ALEX DAVIDSON BONILLA 
                   <small>3011 Lakimau St, Honolulu, HI 96817</small>
                   <small>Hawaii, United States</small>
@@ -464,7 +473,7 @@ body {
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <img src="images/track.png" alt="APEX FTB                 ">  
+        <img src="images/default.png" alt="APEX FTB" style="max-width: 100px;">  
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -1427,22 +1436,22 @@ body {
                                                 <td>You Logged in from IP</td>
                                                 <td style="color:#005b7a;">102.90.64.14</td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td>You Logged in at</td>
                                                 <td style="color:#005b7a;">08/03/24 08:46:08</td>
-                                            </tr>
+                                            </tr> -->
 
                                             <tr>
                                                 <td>Account Name</td>
-                                                <td style="color:#005b7a">ALEX DAVIDSON BONILLA</td>
+                                                <td style="color:#005b7a"><p class="jname">ALEX DAVIDSON BONILLA</p></td>
                                             </tr>
                                             <tr>
                                                 <td>Phone Number</td>
-                                                <td style="color:#005b7a">+15xxx413 xxx </td>
+                                                <td style="color:#005b7a"><p class="user-phone">Loading...</p></td>
                                             </tr>
                                             <tr>
                                                 <td>Email Address</td>
-                                                <td style="color:#005b7a">bonillaalexd9@gmail.com</td>
+                                                <td style="color:#005b7a"><p class="user-email">Loading...</p></td>
  
                                            </tr>
 
@@ -1450,14 +1459,14 @@ body {
                                                 <td>Contact Address</td>
                                                 <td style="color:#0073b7"></td>
                                             </tr> -->
-                                            <tr>
+                                            <!-- <tr>
                                                 <td>State, Country</td>
                                                 <td style="color:#005b7a">Hawaii, United States</td>
-                                            </tr>
+                                            </tr> -->
                                      
                                             <tr>
                                                 <td>Account Number</td>
-                                                <td style="color:#005b7a">6941400807</td>
+                                                <td style="color:#005b7a"><p class="user-account">Loading...</p></td>
                                             </tr>
                                             <!-- <tr>
                                                 <td>Account PIN Code</td>
@@ -1622,6 +1631,13 @@ body {
 
 </div>
 <!-- ./wrapper -->
+
+<!-- <script src="firebaseInit.js" type="module">
+  getUserDetails();
+</script> -->
+<!-- <script>
+  getUserDetails();
+</script> -->
 
   <!-- jQuery 3 -->
 <script src="js/jquery.min_1.js"></script>
