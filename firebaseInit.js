@@ -1,6 +1,6 @@
 // Import Firebase App (the core Firebase SDK) and Firebase Database
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, push, set, get, child, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, update, set, get, child, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -288,11 +288,8 @@ function verify2FACode() {
     }
 }
 
-console.log('Starting the cookie');
-
 // Function to get user details from Firebase using the decoded token
 async function getUserDetails() {
-    console.log('Starting the cookie');
     // Get the token from sessionStorage
     const token = sessionStorage.getItem('token');
     if (!token) {
@@ -308,8 +305,6 @@ async function getUserDetails() {
         window.location.href = 'login.html';
         return;
     }
-
-    console.log(accountNumber);
 
     // Reference to the user's data in Firebase
     const userRef = ref(database, 'users/' + accountNumber.accountNumber);
@@ -405,8 +400,73 @@ async function getUserDetails() {
     }
 }
 
+async function updateEmailAndPassword() {
+    try {
+        // Get the new email and password from input fields
+        const newEmail = document.getElementById('newEmailInput');
+        // console.log(newEmail);
+        const newPassword = document.getElementById('newPasswordInput');
 
-console.log('Ending the cookie');
+        // console.log(newEmail);
+
+        // Get the token from sessionStorage
+        const token = sessionStorage.getItem('token');
+        if (!token) {
+            // Token is not present, redirect to login
+            window.location.href = 'login.html';
+            return;
+        }
+
+        // Decode the token to get the account number
+        const accountNumber = decodeToken(token);
+        if (!accountNumber) {
+            // Token is invalid, redirect to login
+            window.location.href = 'login.html';
+            return;
+        }
+
+        console.log(accountNumber);
+
+        // Reference to the user's data in Firebase
+        const userRef = ref(database, 'users/' + accountNumber.accountNumber);
+        let isEmail;
+        
+        // Get the current user data
+        const snapshot = await get(userRef);
+        if (snapshot.exists()) {
+            const updates = {};
+
+            // Check if the email is not empty, then add it to the updates object
+            if (newEmail !== '' && newEmail !== null) {
+                updates.email = newEmail.value;
+                isEmail = true;
+            }
+
+            // Check if the password is not empty, then add it to the updates object
+            if (newPassword !== '' && newPassword !== null) {
+                updates.password = newPassword.value;
+                isEmail = false
+            }
+
+            // If there are any updates to be made, proceed to update the user's data
+            if (Object.keys(updates).length > 0) {
+                await update(userRef, updates);
+                if (isEmail) {
+                    alert('Email Successfully updated!');
+                } else {
+                    alert('Password Successfully updated!');
+                }
+                // console.log('User email and/or password updated successfully.');
+            } else {
+                console.log('No updates to be made.');
+            }
+        } else {
+            console.error('User not found.');
+        }
+    } catch (error) {
+        console.error('Error updating email and password:', error);
+    }
+}
 
 
 // Expose the login function to the global scope
@@ -419,5 +479,7 @@ window.verify2FACode = verify2FACode;
 window.register = register;
 
 window.getUserDetails = getUserDetails;
+
+window.updateEmailAndPassword = updateEmailAndPassword;
 
 console.log('Closing the cookie');

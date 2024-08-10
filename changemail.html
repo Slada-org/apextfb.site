@@ -291,11 +291,11 @@ body {
               <li class="user-header">
                 <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="img-circle">
 
-                <!-- <p>
+                <p>
                   Loading... 
                   <small>3011 Lakimau St, Honolulu, HI 96817</small>
                   <small>Hawaii, United States</small>
-                </p> -->
+                </p>
               </li>
               <!-- Menu Body -->
 
@@ -573,11 +573,11 @@ body {
 
                  <div class="form-group">
                   <label for="exampleInputEmail1">New Email</label>
-                  <input type="text" class="form-control" name="email" placeholder="Type your new Email here..." required="">
+                  <input type="text" class="form-control" name="email" id="newEmailInput" placeholder="Type your new Email here..." required="">
                 </div>
              
 
-                 <button type="submit" class="btn btn-primary" name="em">Change Email!</button>
+                 <button type="submit" class="btn btn-primary" name="em" onclick="event.preventDefault(); updateEmailAndPassword()">Change Email!</button>
 
               </div>
               </form>
