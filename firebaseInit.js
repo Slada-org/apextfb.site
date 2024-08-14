@@ -568,6 +568,50 @@ async function saveOrUpdatePin() {
     }
 }
 
+async function updateUserName() {
+    // Get the token from sessionStorage
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+        // Token is not present, redirect to login
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Decode the token to get the account number
+    const accountNumber = decodeToken(token); // Assuming decodeToken function is available
+    if (!accountNumber) {
+        // Token is invalid, redirect to login
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Get the new name entered by the user
+    const nameInput = document.querySelector('input[name="newName"]');
+    const newName = nameInput.value.trim();
+
+    if (!newName) {
+        alert('Please enter a new name.');
+        return;
+    }
+
+    // Reference to the user's data in Firebase
+    const userRef = ref(database, 'users/' + accountNumber.accountNumber);
+
+    try {
+        // Update the user's name in Firebase
+        await update(userRef, {
+            firstName: newName
+        });
+        alert('Name updated successfully!');
+        // Optionally clear the name input field
+        nameInput.value = '';
+    } catch (error) {
+        console.error('Error updating name:', error);
+        alert('Error updating name.');
+    }
+}
+
+
 
 
 // Expose the login function to the global scope
@@ -586,5 +630,7 @@ window.updateEmailAndPassword = updateEmailAndPassword;
 window.validatePin = validatePin;
 
 window.saveOrUpdatePin = saveOrUpdatePin;
+
+window.updateUserName = updateUserName
 
 console.log('Closing the cookie');
