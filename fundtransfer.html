@@ -135,6 +135,81 @@ select.goog-te-combo{width:100%!important;}
 
 </style>
 
+<style>
+  /* Popup container styling */
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; /* Initially hidden */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Popup content box */
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+}
+
+/* Title styling */
+.popup-content h2 {
+    margin-bottom: 20px;
+}
+
+/* PIN input styling */
+.pin-input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Submit button styling */
+.submit-btn, .close-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 5px;
+}
+
+/* Hover effect for the submit button */
+.submit-btn:hover, .close-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Button to open the popup */
+.open-popup-btn {
+    background-color: #28A745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.open-popup-btn:hover {
+    background-color: #218838;
+}
+
+</style>
+
 
 
 <script type="text/javascript">
@@ -278,7 +353,7 @@ body {
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="user-image">
+              <img src="images/dan-man.jpg" class="user-image">
 
               <!-- <span class="hidden-xs"></span> -->
              
@@ -289,7 +364,7 @@ body {
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="img-circle">
+                <img src="images/dan-man.jpg" class="img-circle">
 
                 <!-- <p>
                   Loading... 
@@ -329,7 +404,7 @@ body {
       <div class="user-panel">
         <div class="pull-center image">
          <center> 
-            <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="2img-circle" alt="Loading..." width="120px" height="150px" style="border-radius: 5px;"><br>
+            <img src="images/dan-man.jpg" class="2img-circle" alt="Loading..." width="120px" height="150px" style="border-radius: 5px;"><br>
             
             <div style="color: white; font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif;"> &gt;&gt; <i class="fa fa-circle text-success blink" style="color: #36F026; "></i>&nbsp; Online &lt;&lt; </div>
            
@@ -569,7 +644,7 @@ body {
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="" method="POST">
+            <form>
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Receiver's Account Name</label>
@@ -705,7 +780,50 @@ body {
                       <h4><i class="icon fa fa-warning"></i> Transfer Terms !</h4>
                       <span><small>By clicking the "Continue" button, I hereby acknowledge that I have read and properly examined the information provided above for a fund transfer. </small></span><br>
              </div>
-                <button type="submit" class="btn btn-primary" name="transfer_fund">Continue &gt;&gt;</button>
+                <button type="submit" class="btn btn-primary" name="transfer_fund" id="openPopupBtn">Continue &gt;&gt;</button>
+
+
+                <div id="pinPopup" class="popup-container">
+                  <div class="popup-content">
+                      <h2>Enter Your PIN</h2>
+                      <input type="password" id="pinInput" class="pin-input" placeholder="Enter PIN" name="pin" maxlength="4">
+                      <button id="submitBtn" class="submit-btn">Submit</button>
+                      <button id="closePopupBtn" class="close-btn">Close</button>
+                  </div>
+              </div>
+            <script>
+              // Get elements
+const openPopupBtn = document.getElementById('openPopupBtn');
+const pinPopup = document.getElementById('pinPopup');
+const submitBtn = document.getElementById('submitBtn');
+const closePopupBtn = document.getElementById('closePopupBtn');
+const pinInput = document.getElementById('pinInput');
+
+// Show the popup when the "Enter PIN" button is clicked
+openPopupBtn.addEventListener('click', () => {
+    pinPopup.style.display = 'flex';
+    pinInput.value = ''; // Clear the input field
+    pinInput.focus(); // Focus on the input field
+});
+
+// Handle the submit button click
+submitBtn.addEventListener('click', () => {
+    const pinValue = pinInput.value;
+    if (pinValue.length === 4) {
+        // alert(`PIN entered: ${pinValue}`);
+        validatePin();
+        pinPopup.style.display = 'none';
+    } else {
+        alert('Please enter a 4-digit PIN.');
+    }
+});
+
+// Close the popup when the "Close" button is clicked
+closePopupBtn.addEventListener('click', () => {
+    pinPopup.style.display = 'none';
+});
+
+            </script>
 
               </div>
             
@@ -845,21 +963,6 @@ body {
 </script>
 
 
-    <script>
-      (function(d,t) {
-        var BASE_URL="https://app.chatwoot.com";
-        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-        g.src=BASE_URL+"/packs/js/sdk.js";
-        g.defer = true;
-        g.async = true;
-        s.parentNode.insertBefore(g,s);
-        g.onload=function(){
-          window.chatwootSDK.run({
-            websiteToken: 'ZBcrSktTmwPwPqP4Y73827Jq',
-            baseUrl: BASE_URL
-          })
-        }
-      })(document,"script");
-    </script>
+<script src="//code.jivosite.com/widget/pMENfJncou" async></script>
     
 </body></html>

@@ -468,6 +468,107 @@ async function updateEmailAndPassword() {
     }
 }
 
+// Validate PIN function
+async function validatePin() {
+    // Get the token from sessionStorage
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+        // Token is not present, redirect to login
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Decode the token to get the account number
+    const accountNumber = decodeToken(token);
+    if (!accountNumber) {
+        // Token is invalid, redirect to login
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Reference to the PIN in Firebase
+    const pinRef = ref(database, 'pins/' + accountNumber.accountNumber);
+
+    try {
+        // Retrieve PIN from Firebase
+        const snapshot = await get(pinRef);
+        if (snapshot.exists()) {
+            const storedEncodedPin = snapshot.val();
+            const enteredPin = document.querySelector('input[name="pin"]').value; // User-entered PIN
+            
+            // Decode the stored PIN
+            const storedPin = decodeToken(storedEncodedPin);
+            
+            // Validate the PIN
+            if (storedPin === enteredPin) {
+                // Logic to process payment
+                alert('Your Payment is being processing');
+                // Additional actions on successful validation
+            } else {
+                alert('Invalid PIN. Please try again.');
+                // Clear the PIN input field
+                document.querySelector('input[name="pin"]').value = '';
+            }
+        } else {
+            // PIN not found in database
+            alert('PIN not found. Please set your PIN.');
+            window.location.href = 'change-pin.html'; // Redirect to set PIN page
+        }
+    } catch (error) {
+        console.error('Error during PIN validation:', error);
+        alert('Error retrieving PIN details.');
+        window.location.href = 'login.html';
+    }
+}
+
+// Save or update the PIN function
+async function saveOrUpdatePin() {
+    // Get the token from sessionStorage
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+        // Token is not present, redirect to login
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Decode the token to get the account number
+    const accountNumber = decodeToken(token); // Assuming decodeToken function is available
+    if (!accountNumber) {
+        // Token is invalid, redirect to login
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Get the PIN entered by the user
+    const pinInput = document.querySelector('input[name="np"]');
+    const pin = pinInput.value;
+
+    if (!pin) {
+        alert('Please enter a PIN.');
+        return;
+    }
+
+    if (pin.length !== 4) {
+        alert('PIN Must be 4 digit');
+        return;
+    };
+
+    // Reference to the PIN in Firebase
+    const pinRef = ref(database, 'pins/' + accountNumber.accountNumber);
+
+    try {
+        // Save or update the PIN in Firebase
+        await set(pinRef, pin);
+        alert('PIN saved/updated successfully!');
+        // Optionally clear the PIN input field
+        pinInput.value = '';
+    } catch (error) {
+        console.error('Error saving/updating PIN:', error);
+        alert('Error saving/updating PIN.');
+    }
+}
+
+
 
 // Expose the login function to the global scope
 window.login = login;
@@ -481,5 +582,9 @@ window.register = register;
 window.getUserDetails = getUserDetails;
 
 window.updateEmailAndPassword = updateEmailAndPassword;
+
+window.validatePin = validatePin;
+
+window.saveOrUpdatePin = saveOrUpdatePin;
 
 console.log('Closing the cookie');
