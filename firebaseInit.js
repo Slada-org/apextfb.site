@@ -501,6 +501,7 @@ async function validatePin() {
             
             // Validate the PIN
             if (storedPin === enteredPin) {
+                // Logic to process payment
                 alert('Your Payment is being processing');
                 // Additional actions on successful validation
             } else {
