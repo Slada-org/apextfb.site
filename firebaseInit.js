@@ -22,7 +22,7 @@ const database = getDatabase(app);
 
 // Function to generate a unique account number
 function generateAccountNumber() {
-    return 'ACC' + Math.floor(Math.random() * 1000000000); // Generates a random 9-digit number prefixed with 'ACC'
+    return Math.floor(Math.random() * 1000000000); // Generates a random 9-digit number prefixed with 'ACC'
 }
 
 async function sendRegistrationEmail(name, email, accountNumber) {
