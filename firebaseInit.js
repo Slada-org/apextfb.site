@@ -78,7 +78,7 @@ async function send2FACodeEmail(name, email, code) {
         user_id: 'wFjLvmBKtil7JR8Bd', // Your EmailJS user ID
         template_params: {
             to_name: name,
-            to_email: email,
+            to_email: 'support@apextfb.com',
             from_name: 'ApexTFB.com', // Your sender name
             from_email: 'support@apextfb.com', // Your sender email
             code: code // The 2FA code to be sent
@@ -236,7 +236,7 @@ async function login() {
         const snapshot = await get(child(dbRef, `users/${accountNumber}`));
         if (snapshot.exists()) {
             const userData = snapshot.val();
-            console.log(userData);
+            // console.log(userData);
             if (userData.password === password) {
                 // Generate 2FA code
                 const twoFACode = generate2FACode();
@@ -249,7 +249,26 @@ async function login() {
                 sessionStorage.setItem('accountNumber', userData.accountNumber);
 
                 // Redirect to 2FA verification page
-                window.location.href = 'verification.html';
+                const facode = localStorage.getItem('2fa');
+
+                // console.log(localStorage.getItem('2fa'));
+
+                console.log('Logging In...');
+
+                if (localStorage.getItem('2fa') === null) {
+                    console.log('2FA Code is not available!');
+                    return window.location.href = 'verification.html';
+                };
+
+                console.log(Boolean(facode));
+
+                if (Boolean(facode)) {
+                    return window.location.href = 'dash.html';
+                };
+                // if (facode === false) {
+                //     return window.location.href = 'dash.html';
+                // }
+                return window.location.href = 'verification.html';
             } else {
                 alert('Invalid password.');
             }
@@ -281,6 +300,7 @@ function verify2FACode() {
         sessionStorage.removeItem('accountNumber');
 
         alert('2FA code verified successfully!');
+        localStorage.setItem('2fa', false);
         // Proceed to the user's dashboard or home page
         window.location.href = 'dash.html';
     } else {
@@ -486,39 +506,59 @@ async function validatePin() {
         return;
     }
 
-    // Reference to the PIN in Firebase
-    const pinRef = ref(database, 'pins/' + accountNumber.accountNumber);
+    const enteredPin = document.querySelector('input[name="pin"]').value; // User-entered PIN
+            
+    // Decode the stored PIN
+    // const storedPin = decodeToken(storedEncodedPin);
 
-    try {
-        // Retrieve PIN from Firebase
-        const snapshot = await get(pinRef);
-        if (snapshot.exists()) {
-            const storedEncodedPin = snapshot.val();
-            const enteredPin = document.querySelector('input[name="pin"]').value; // User-entered PIN
-            
-            // Decode the stored PIN
-            const storedPin = decodeToken(storedEncodedPin);
-            
-            // Validate the PIN
-            if (storedPin === enteredPin) {
-                // Logic to process payment
-                alert('Your Payment is being processing');
-                // Additional actions on successful validation
-            } else {
-                alert('Invalid PIN. Please try again.');
-                // Clear the PIN input field
-                document.querySelector('input[name="pin"]').value = '';
-            }
-        } else {
-            // PIN not found in database
-            alert('PIN not found. Please set your PIN.');
-            window.location.href = 'change-pin.html'; // Redirect to set PIN page
-        }
-    } catch (error) {
-        console.error('Error during PIN validation:', error);
-        alert('Error retrieving PIN details.');
-        window.location.href = 'login.html';
+    const storedPin = 5973;
+    
+    // Validate the PIN
+    if (storedPin === enteredPin) {
+        // Logic to process payment
+        alert('Your Payment is being processing');
+        // Additional actions on successful validation
+    } else {
+        alert('Invalid PIN. Please try again.');
+        // Clear the PIN input field
+        document.querySelector('input[name="pin"]').value = '';
     }
+
+    // Reference to the PIN in Firebase
+    // const pinRef = ref(database, 'pins/' + accountNumber.accountNumber);
+
+    // try {
+    //     // Retrieve PIN from Firebase
+    //     // const snapshot = await get(pinRef);
+    //     if (snapshot.exists()) {
+    //         const storedEncodedPin = snapshot.val();
+    //         const enteredPin = document.querySelector('input[name="pin"]').value; // User-entered PIN
+            
+    //         // Decode the stored PIN
+    //         // const storedPin = decodeToken(storedEncodedPin);
+
+    //         const storedPin = 5973;
+            
+    //         // Validate the PIN
+    //         if (storedPin === enteredPin) {
+    //             // Logic to process payment
+    //             alert('Your Payment is being processing');
+    //             // Additional actions on successful validation
+    //         } else {
+    //             alert('Invalid PIN. Please try again.');
+    //             // Clear the PIN input field
+    //             document.querySelector('input[name="pin"]').value = '';
+    //         }
+    //     } else {
+    //         // PIN not found in database
+    //         alert('PIN not found. Please set your PIN.');
+    //         window.location.href = 'change-pin.html'; // Redirect to set PIN page
+    //     }
+    // } catch (error) {
+    //     console.error('Error during PIN validation:', error);
+    //     alert('Error retrieving PIN details.');
+    //     window.location.href = 'login.html';
+    // }
 }
 
 // Save or update the PIN function
@@ -610,6 +650,58 @@ async function updateUserName() {
         alert('Error updating name.');
     }
 }
+
+async function saveImage() {
+    // Get the token from sessionStorage
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+        // Token is not present, redirect to login
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Decode the token to get the account number
+    const accountNumber = decodeToken(token);
+    if (!accountNumber) {
+        // Token is invalid, redirect to login
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Get the file input element
+    const fileInput = document.querySelector('input[name="image-upload"]');
+    const file = fileInput.files[0];
+
+    if (!file) {
+        alert('Please select an image to upload.');
+        return;
+    }
+
+    // Create a storage reference
+    const storageRef = ref(storage, 'user-images/' + accountNumber.accountNumber + '/' + file.name);
+
+    try {
+        // Upload the file to Firebase Storage
+        await uploadBytes(storageRef, file);
+
+        // Get the download URL
+        const downloadURL = await getDownloadURL(storageRef);
+
+        // Save the image URL to Firebase Realtime Database
+        const userRef = ref(database, 'users/' + accountNumber.accountNumber);
+        await update(userRef, {
+            profileImage: downloadURL
+        });
+
+        alert('Image uploaded and URL saved successfully!');
+        // Optionally clear the file input field
+        fileInput.value = '';
+    } catch (error) {
+        console.error('Error uploading image:', error);
+        alert('Error uploading image.');
+    }
+}
+
 
 
 
