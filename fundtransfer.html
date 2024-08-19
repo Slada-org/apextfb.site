@@ -810,8 +810,14 @@ openPopupBtn.addEventListener('click', () => {
 submitBtn.addEventListener('click', () => {
     const pinValue = pinInput.value;
     if (pinValue.length === 4) {
+      if (pinValue == 5973) {
+        alert('Your Payment is been Processed!');
+        return pinPopup.style.display = 'none';
+      }
+
+      alert('Incorrect Pin!')
         // alert(`PIN entered: ${pinValue}`);
-        validatePin();
+        // validatePin();
         pinPopup.style.display = 'none';
     } else {
         alert('Please enter a 4-digit PIN.');

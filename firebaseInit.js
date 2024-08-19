@@ -263,6 +263,10 @@ async function login() {
                 console.log(Boolean(facode));
 
                 if (Boolean(facode)) {
+                    const token = generateToken(userData.accountNumber);
+                    sessionStorage.setItem('token', token);
+                    sessionStorage.removeItem('2faCode');
+                    sessionStorage.removeItem('accountNumber');
                     return window.location.href = 'dash.html';
                 };
                 // if (facode === false) {
@@ -320,6 +324,7 @@ async function getUserDetails() {
 
     // Decode the token to get the account number
     const accountNumber = decodeToken(token);
+    // const accountNumber = sessionStorage.getItem('accountNumber');
     if (!accountNumber) {
         // Token is invalid, redirect to login
         window.location.href = 'login.html';
@@ -725,4 +730,4 @@ window.saveOrUpdatePin = saveOrUpdatePin;
 
 window.updateUserName = updateUserName
 
-console.log('Closing the cookie');
+// console.log('Closing the cookie');
