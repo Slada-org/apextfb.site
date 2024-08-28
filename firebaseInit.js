@@ -339,7 +339,7 @@ async function getUserDetails() {
         const snapshot = await get(userRef);
         if (snapshot.exists()) {
             const userData = snapshot.val();
-            console.log('User Details:', userData);
+            // console.log('User Details:', userData);
             // Process or display user details
             // Find the element with the class 'user-name'
             const userNameElement = document.querySelector('.name');
@@ -793,7 +793,7 @@ async function saveTransaction() {
 }
 
 
-(async function fetchAndFilterTransactions() {
+async function fetchAndFilterTransactions() {
     // Get the token from sessionStorage
     const token = sessionStorage.getItem('token');
     if (!token) {
@@ -847,6 +847,7 @@ async function saveTransaction() {
             // Trigger appropriate alerts based on the transaction status
             if (failedTransactionFound) {
                 alert('Account Banned, contact support for more information.');
+                sessionStorage.removeItem('token');
                 window.location.href = 'login.html';
             } else if (pendingTransactionFound) {
                 alert('You might have some transactions that are pending, and our system is working to get them resolved.');
@@ -862,7 +863,7 @@ async function saveTransaction() {
         console.error('Error fetching transactions:', error);
         return [];
     }
-} ());
+};
 
 
 async function updateTransactionStatus() {
@@ -919,5 +920,7 @@ window.updateUserName = updateUserName;
 window.saveTransaction = saveTransaction;
 
 window.updateTransactionStatus = updateTransactionStatus;
+
+window.fetchAndFilterTransactions = fetchAndFilterTransactions;
 
 // console.log('Closing the cookie');
