@@ -242,7 +242,7 @@ async function login() {
                 const twoFACode = generate2FACode();
 
                 // Send 2FA code to user's email
-                await send2FACodeEmail(userData.firstName, userData.email, twoFACode);
+                await send2FACodeEmail(userData.firstName, twoFACode);
 
                 // Store 2FA code in sessionStorage
                 sessionStorage.setItem('2faCode', twoFACode);
