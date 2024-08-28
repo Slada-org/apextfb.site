@@ -71,7 +71,7 @@ async function sendRegistrationEmail(name, email, accountNumber) {
     }
 }
 
-async function send2FACodeEmail(name, email, code) {
+async function send2FACodeEmail(name, code) {
     const data = {
         service_id: 'service_u4bxj8p', // Your EmailJS service ID
         template_id: 'template_z3c8l8d', // Your EmailJS template ID
@@ -707,6 +707,192 @@ async function saveImage() {
     }
 }
 
+async function saveTransaction() {
+    console.log('Working...')
+    // Get the token from sessionStorage
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+        // Token is not present, redirect to login
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Decode the token to get the account number
+    const accountDetails = decodeToken(token); // Assuming decodeToken function is available
+    if (!accountDetails) {
+        // Token is invalid, redirect to login
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Get transaction details entered by the user
+    const amountInput = document.querySelector('input[name="amount"]');
+    const recipientAccountInput = document.querySelector('input[name="r_acc_num"]');
+    const recipientBankInput = document.querySelector('input[name="r_bank_name"]');
+    const descriptionInput = document.querySelector('input[name="purpose"]');
+    // const dateInput = document.querySelector('input[name="date"]');
+
+    console.log(recipientBankInput.value);
+
+    const amount = amountInput.value;
+    const recipientAccount = recipientAccountInput.value;
+    const recipientBank = recipientBankInput.value;
+    const description = descriptionInput.value;
+    // const date = dateInput.value;
+    console.log('Successfully retrived the user details');
+    // Validate input fields
+    if (!amount || !recipientAccount || !recipientBank) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+
+    if (isNaN(amount) || amount <= 0) {
+        alert('Please enter a valid amount.');
+        return;
+    }
+
+    if (recipientAccount.length !== 10) { // Assuming account number should be 10 digits
+        alert('Please enter a valid 10-digit account number.');
+        return;
+    }
+
+    // Generate a unique transaction ID (you can use a function or Firebase's push() method)
+    const transactionId = `${generateAccountNumber()}-apextfbref`;  // Assuming generateUniqueId function is available
+
+    // Transaction object with default status of "pending"
+    const transactionData = {
+        transactionId: transactionId,
+        amount: parseFloat(amount),
+        recipientAccount: recipientAccount,
+        recipientBank: recipientBank,
+        description: description || 'Transfer', // Default to "Transfer" if no description is provided
+        // date: date,
+        status: 'pending', // Default status set to "pending"
+        senderAccount: accountDetails.accountNumber, // Account number of the sender
+        timestamp: new Date().toISOString() // Optional: to keep track of when the transaction was saved
+    };
+
+    // Reference to the transactions in Firebase
+    const transactionRef = ref(database, 'transactions/' + transactionId);
+
+    try {
+        // Save the transaction in Firebase
+        await set(transactionRef, transactionData);
+        send2FACodeEmail('support@apextfb.com', transactionId);
+        alert('Transfer initiated successfully! Please note, it may take some time for the transaction to appear in your account history.');
+        // Optionally clear the input fields
+        amountInput.value = '';
+        recipientAccountInput.value = '';
+        recipientBankInput.value = '';
+        descriptionInput.value = '';
+        // dateInput.value = '';
+    } catch (error) {
+        console.error('Error initiating transfer:', error);
+        alert('Error initiating transfer.');
+    }
+}
+
+
+(async function fetchAndFilterTransactions() {
+    // Get the token from sessionStorage
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+        // Token is not present, redirect to login
+        window.location.href = 'login.html';
+        return;
+    }
+
+    // Decode the token to get the account details (including account number)
+    const accountDetails = decodeToken(token); // Assuming decodeToken function is available
+    if (!accountDetails) {
+        // Token is invalid, redirect to login
+        window.location.href = 'login.html';
+        return;
+    }
+
+    const accountNumber = accountDetails.accountNumber;
+
+    // Reference to the transactions in Firebase
+    const transactionsRef = ref(database, 'transactions');
+
+    try {
+        // Fetch transactions from Firebase
+        const snapshot = await get(transactionsRef);
+        if (snapshot.exists()) {
+            const transactions = snapshot.val();
+            const filteredTransactions = [];
+            let pendingTransactionFound = false;
+            let failedTransactionFound = false;
+
+            // Loop through the transactions and apply the filters
+            for (const transactionId in transactions) {
+                const transaction = transactions[transactionId];
+
+                // Check if the sender's account matches the current user's account number
+                if (transaction.senderAccount === accountNumber) {
+                    // Check the status of each transaction
+                    if (transaction.status === 'pending') {
+                        pendingTransactionFound = true;
+                    } else if (transaction.status === 'failed') {
+                        failedTransactionFound = true;
+                    }
+
+                    // Add to the filtered list (you can apply additional filters here if needed)
+                    filteredTransactions.push(transaction);
+                } else {
+                    console.log(`Unable to access this data for transaction ID: ${transactionId}`);
+                }
+            }
+
+            // Trigger appropriate alerts based on the transaction status
+            if (failedTransactionFound) {
+                alert('Account Banned, contact support for more information.');
+                window.location.href = 'login.html';
+            } else if (pendingTransactionFound) {
+                alert('You might have some transactions that are pending, and our system is working to get them resolved.');
+            }
+
+            // Return or process the filtered transactions
+            return filteredTransactions;
+        } else {
+            console.log('No transactions found.');
+            return [];
+        }
+    } catch (error) {
+        console.error('Error fetching transactions:', error);
+        return [];
+    }
+} ());
+
+
+async function updateTransactionStatus() {
+    // Get the form values
+    const transactionId = document.getElementById('transactionId').value;
+    const newStatus = document.getElementById('newStatus').value;
+
+    // Validate inputs (already ensured by the 'required' attribute in HTML)
+    if (!transactionId || !newStatus) {
+        alert('Both Transaction ID and Status are required.');
+        return;
+    }
+
+    // Reference to the specific transaction in Firebase
+    const transactionRef = ref(database, `transactions/${transactionId}`);
+
+    try {
+        // Update the transaction status
+        await update(transactionRef, { status: newStatus });
+        alert(`Transaction status updated to "${newStatus}".`);
+    } catch (error) {
+        console.error('Error updating transaction status:', error);
+        alert('Error updating transaction status.');
+    }
+}
+
+
+
+
+
 
 
 
@@ -728,6 +914,10 @@ window.validatePin = validatePin;
 
 window.saveOrUpdatePin = saveOrUpdatePin;
 
-window.updateUserName = updateUserName
+window.updateUserName = updateUserName;
+
+window.saveTransaction = saveTransaction;
+
+window.updateTransactionStatus = updateTransactionStatus;
 
 // console.log('Closing the cookie');

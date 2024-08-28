@@ -353,7 +353,7 @@ body {
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="user-image">
+              <img src="" class="user-image">
 
               <!-- <span class="hidden-xs"></span> -->
              
@@ -364,7 +364,7 @@ body {
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="img-circle">
+                <img src="" class="img-circle">
 
                 <!-- <p>
                   Loading... 
@@ -404,7 +404,7 @@ body {
       <div class="user-panel">
         <div class="pull-center image">
          <center> 
-            <img src="images/ALEX%20DAVIDSON%20BONILLA.jpg" class="2img-circle" alt="Loading..." width="120px" height="150px" style="border-radius: 5px;"><br>
+            <img src="" class="2img-circle" alt="Loading..." width="120px" height="150px" style="border-radius: 5px;"><br>
             
             <div style="color: white; font-family: Segoe UI,Tahoma,Verdana,Arial,sans-serif;"> &gt;&gt; <i class="fa fa-circle text-success blink" style="color: #36F026; "></i>&nbsp; Online &lt;&lt; </div>
            
@@ -516,12 +516,12 @@ body {
           </a>
           
         </li> -->
-        <li>
+        <!-- <li>
           <a href="changemail.html">
             <i class="fa fa-edit"></i> <span>Change Contact Info</span>
             
           </a>
-        </li>
+        </li> -->
 
         <li>
           <a href="nok.html">
@@ -699,7 +699,7 @@ body {
 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Payment Description</label>
-                 <textarea class="form-control" name="purpose" rows="2" placeholder="Give reason(s) for funds transfer..." required=""></textarea>
+                 <input class="form-control" name="purpose" placeholder="Give reason(s) for funds transfer..." required=""></input>
                 </div>
                
 
@@ -806,11 +806,11 @@ openPopupBtn.addEventListener('click', () => {
 });
 
 // Handle the submit button click
-submitBtn.addEventListener('click', () => {
+submitBtn.addEventListener('click', async () => {
     const pinValue = pinInput.value;
     if (pinValue.length === 4) {
       if (pinValue == 5973) {
-        alert('Your Payment is been Processed!');
+        await saveTransaction();
         return pinPopup.style.display = 'none';
       }
 
