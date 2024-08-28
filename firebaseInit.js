@@ -228,6 +228,8 @@ async function login() {
     const accountNumber = document.getElementById('accountNumber').value;
     const password = document.getElementById('password').value;
 
+    const url = sessionStorage.getItem('url');
+
     // Reference to the user's data in the database
     const dbRef = ref(getDatabase());
 
@@ -267,7 +269,7 @@ async function login() {
                     sessionStorage.setItem('token', token);
                     sessionStorage.removeItem('2faCode');
                     sessionStorage.removeItem('accountNumber');
-                    return window.location.href = 'dash.html';
+                    return window.location.href = url;
                 };
                 // if (facode === false) {
                 //     return window.location.href = 'dash.html';
@@ -295,6 +297,7 @@ function verify2FACode() {
     // Retrieve stored 2FA code from sessionStorage
     const storedCode = sessionStorage.getItem('2faCode');
     const accountNumber = sessionStorage.getItem('accountNumber');
+    const url = sessionStorage.getItem('url');
 
     if (enteredCode === storedCode) {
         // Clear sessionStorage
@@ -306,7 +309,7 @@ function verify2FACode() {
         alert('2FA code verified successfully!');
         localStorage.setItem('2fa', false);
         // Proceed to the user's dashboard or home page
-        window.location.href = 'dash.html';
+        window.location.href = url;
     } else {
         alert('Invalid 2FA code.');
     }
@@ -318,6 +321,8 @@ async function getUserDetails() {
     const token = sessionStorage.getItem('token');
     if (!token) {
         // Token is not present, redirect to login
+        const url = window.location.href;
+        sessionStorage.setItem('url', url)
         window.location.href = 'login.html';
         return;
     }
@@ -327,6 +332,8 @@ async function getUserDetails() {
     // const accountNumber = sessionStorage.getItem('accountNumber');
     if (!accountNumber) {
         // Token is invalid, redirect to login
+        const url = window.location.href;
+        sessionStorage.setItem('url', url)
         window.location.href = 'login.html';
         return;
     }
@@ -416,12 +423,16 @@ async function getUserDetails() {
         } else {
             // Account number not found
             alert('User not found.');
+            const url = window.location.href;
+            sessionStorage.setItem('url', url)
             window.location.href = 'login.html';
         }
     } catch (error) {
         console.error('Error during authentication:', error);
         // Token verification failed
         alert('Error retrieving user details.');
+        const url = window.location.href;
+        sessionStorage.setItem('url', url)
         window.location.href = 'login.html';
     }
 }
