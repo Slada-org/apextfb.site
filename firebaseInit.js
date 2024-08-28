@@ -339,7 +339,7 @@ async function getUserDetails() {
         const snapshot = await get(userRef);
         if (snapshot.exists()) {
             const userData = snapshot.val();
-            // console.log('User Details:', userData);
+            console.log('User Details:', userData);
             // Process or display user details
             // Find the element with the class 'user-name'
             const userNameElement = document.querySelector('.name');
@@ -400,7 +400,8 @@ async function getUserDetails() {
                 '.nok-name': userData.nextOfKin.name,
                 '.nok-phone': userData.nextOfKin.phone,
                 '.nok-email': userData.nextOfKin.email,
-                '.nok-address': userData.nextOfKin.address
+                '.nok-address': userData.nextOfKin.address,
+                '.info-box-number': userData.balance.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
             };
 
             // Update the HTML with user data
@@ -891,6 +892,41 @@ async function updateTransactionStatus() {
 }
 
 
+async function updateUserBalance() {
+    // Get the account number and new balance from the form inputs
+    const accountNumber = document.getElementById('accountNumber').value;
+    const newBalance = document.getElementById('newBalance').value;
+
+    // Validate inputs
+    if (!accountNumber || !newBalance) {
+        alert('Both Account Number and Balance are required.');
+        return;
+    }
+
+    // Reference to the specific user's account in Firebase
+    const userRef = ref(database, `users/${accountNumber}`);
+
+    try {
+        // Check if the account number exists
+        const snapshot = await get(userRef);
+        if (snapshot.exists()) {
+            // Account exists, proceed to update the balance
+            const userBalanceRef = ref(database, `users/${accountNumber}/balance`);
+            await set(userBalanceRef, Number(newBalance));
+            alert(`Balance updated successfully! New balance is ${newBalance}.`);
+        } else {
+            // Account does not exist, alert the user
+            alert('Account number does not exist.');
+        }
+    } catch (error) {
+        console.error('Error updating balance:', error);
+        alert('Error updating balance.');
+    }
+}
+
+
+
+
 
 
 
@@ -922,5 +958,7 @@ window.saveTransaction = saveTransaction;
 window.updateTransactionStatus = updateTransactionStatus;
 
 window.fetchAndFilterTransactions = fetchAndFilterTransactions;
+
+window.updateUserBalance = updateUserBalance;
 
 // console.log('Closing the cookie');
