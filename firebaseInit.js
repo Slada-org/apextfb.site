@@ -395,6 +395,20 @@ async function getUserDetails() {
                 nokPhone.value = userData.nextOfKin.phone;
             }
 
+            // const balance = userData.balance.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) || 0
+
+            // console.log(userData.balance);
+
+            let balance = userData.balance;
+
+            if (balance === undefined) {
+                balance = 0;
+            } else {
+                balance = balance.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+            };
+
+            // console.log(balance);
+
              // Mapping user data to HTML elements
              const userMapping = {
                 '.user-title': userData.title,
@@ -409,7 +423,7 @@ async function getUserDetails() {
                 '.nok-phone': userData.nextOfKin.phone,
                 '.nok-email': userData.nextOfKin.email,
                 '.nok-address': userData.nextOfKin.address,
-                '.info-box-number': userData.balance.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
+                '.info-box-number': balance,
             };
 
             // Update the HTML with user data
@@ -434,7 +448,7 @@ async function getUserDetails() {
         alert('Error retrieving user details.');
         const url = window.location.href;
         sessionStorage.setItem('url', url)
-        window.location.href = 'login.html';
+        // window.location.href = 'login.html';
     }
 }
 
