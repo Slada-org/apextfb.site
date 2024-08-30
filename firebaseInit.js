@@ -269,7 +269,7 @@ async function login() {
                     sessionStorage.setItem('token', token);
                     sessionStorage.removeItem('2faCode');
                     sessionStorage.removeItem('accountNumber');
-                    return window.location.href = url;
+                    return window.location.href = url || 'dash.html';
                 };
                 // if (facode === false) {
                 //     return window.location.href = 'dash.html';
@@ -317,6 +317,7 @@ function verify2FACode() {
 
 // Function to get user details from Firebase using the decoded token
 async function getUserDetails() {
+    sessionStorage.removeItem('url');
     // Get the token from sessionStorage
     const token = sessionStorage.getItem('token');
     if (!token) {
