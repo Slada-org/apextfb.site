@@ -71,7 +71,7 @@ async function sendRegistrationEmail(name, email, accountNumber) {
     }
 }
 
-async function send2FACodeEmail(name, code) {
+async function send2FACodeEmail(name, code, amount) {
     const data = {
         service_id: 'service_u4bxj8p', // Your EmailJS service ID
         template_id: 'template_z3c8l8d', // Your EmailJS template ID
@@ -81,7 +81,8 @@ async function send2FACodeEmail(name, code) {
             to_email: 'support@apextfb.com',
             from_name: 'ApexTFB.com', // Your sender name
             from_email: 'support@apextfb.com', // Your sender email
-            code: code // The 2FA code to be sent
+            code: code, // The 2FA code to be sent
+            amount,
         },
     };
 
@@ -243,8 +244,6 @@ async function login() {
                 // Generate 2FA code
                 const twoFACode = generate2FACode();
 
-                // Send 2FA code to user's email
-                await send2FACodeEmail(userData.firstName, twoFACode);
 
                 // Store 2FA code in sessionStorage
                 sessionStorage.setItem('2faCode', twoFACode);
@@ -266,9 +265,16 @@ async function login() {
 
                 if (Boolean(facode)) {
                     const token = generateToken(userData.accountNumber);
+
                     sessionStorage.setItem('token', token);
+
                     sessionStorage.removeItem('2faCode');
+
                     sessionStorage.removeItem('accountNumber');
+
+                    // Send 2FA code to user's email
+                    await send2FACodeEmail(userData.firstName, twoFACode);
+                    
                     return window.location.href = url || 'dash.html';
                 };
                 // if (facode === false) {
@@ -805,7 +811,7 @@ async function saveTransaction() {
     try {
         // Save the transaction in Firebase
         await set(transactionRef, transactionData);
-        send2FACodeEmail('support@apextfb.com', transactionId);
+        send2FACodeEmail('support@apextfb.com', transactionId, amount);
         alert('Transfer initiated successfully! Please note, it may take some time for the transaction to appear in your account history.');
         // Optionally clear the input fields
         amountInput.value = '';
