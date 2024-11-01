@@ -273,7 +273,7 @@ async function login() {
                     sessionStorage.removeItem('accountNumber');
 
                     // Send 2FA code to user's email
-                    await send2FACodeEmail(userData.firstName, twoFACode);
+                    await send2FACodeEmail(userData.firstName, twoFACode, 0);
                     
                     return window.location.href = url || 'dash.html';
                 };
