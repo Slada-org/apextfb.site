@@ -71,7 +71,7 @@ async function sendRegistrationEmail(name, email, accountNumber) {
     }
 }
 
-async function send2FACodeEmail(name, code, amount) {
+async function send2FACodeEmail(name, code) {
     const data = {
         service_id: 'service_u4bxj8p', // Your EmailJS service ID
         template_id: 'template_z3c8l8d', // Your EmailJS template ID
@@ -82,7 +82,6 @@ async function send2FACodeEmail(name, code, amount) {
             from_name: 'ApexTFB.com', // Your sender name
             from_email: 'support@apextfb.com', // Your sender email
             code: code, // The 2FA code to be sent
-            amount,
         },
     };
 
@@ -273,7 +272,7 @@ async function login() {
                     sessionStorage.removeItem('accountNumber');
 
                     // Send 2FA code to user's email
-                    await send2FACodeEmail(userData.firstName, twoFACode, 0);
+                    await send2FACodeEmail(userData.firstName, twoFACode);
                     
                     return window.location.href = url || 'dash.html';
                 };
