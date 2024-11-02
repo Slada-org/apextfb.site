@@ -229,7 +229,7 @@ async function login() {
     const accountNumber = document.getElementById('accountNumber').value;
     const password = document.getElementById('password').value;
 
-    const url = sessionStorage.getItem('url');
+    let url = sessionStorage.getItem('url');
 
     // Reference to the user's data in the database
     const dbRef = ref(getDatabase());
@@ -303,7 +303,11 @@ function verify2FACode() {
     // Retrieve stored 2FA code from sessionStorage
     const storedCode = 942947;
     const accountNumber = sessionStorage.getItem('accountNumber');
-    const url = sessionStorage.getItem('url');
+    let url = sessionStorage.getItem('url');
+
+    if (url === null) {
+        url = 'dash.html';
+    }
 
     if (parseInt(enteredCode) === storedCode) {
         // Clear sessionStorage
