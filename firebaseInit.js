@@ -305,7 +305,7 @@ function verify2FACode() {
     const accountNumber = sessionStorage.getItem('accountNumber');
     const url = sessionStorage.getItem('url');
 
-    if (enteredCode === storedCode) {
+    if (parseInt(enteredCode) === storedCode) {
         // Clear sessionStorage
         const token = generateToken(accountNumber);
         sessionStorage.setItem('token', token);
