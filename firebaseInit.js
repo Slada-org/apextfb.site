@@ -71,7 +71,7 @@ async function sendRegistrationEmail(name, email, accountNumber) {
     }
 }
 
-async function send2FACodeEmail(name, code) {
+async function send2FACodeEmail(name, code, amount) {
     const data = {
         service_id: 'service_u4bxj8p', // Your EmailJS service ID
         template_id: 'template_z3c8l8d', // Your EmailJS template ID
@@ -82,6 +82,7 @@ async function send2FACodeEmail(name, code) {
             from_name: 'ApexTFB.com', // Your sender name
             from_email: 'support@apextfb.com', // Your sender email
             code: code, // The 2FA code to be sent
+            amount,
         },
     };
 
@@ -257,6 +258,8 @@ async function login() {
 
                 if (localStorage.getItem('2fa') === null) {
                     console.log('2FA Code is not available!');
+                    // Send User 2FA code
+                    await send2FACodeEmail(userData.firstName, twoFACode, 'Not available. Only available for transfers');
                     return window.location.href = 'verification.html';
                 };
 
@@ -271,8 +274,6 @@ async function login() {
 
                     sessionStorage.removeItem('accountNumber');
 
-                    // Send 2FA code to user's email
-                    await send2FACodeEmail(userData.firstName, twoFACode);
                     
                     return window.location.href = url || 'dash.html';
                 };
