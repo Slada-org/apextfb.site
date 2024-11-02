@@ -246,7 +246,7 @@ async function login() {
 
 
                 // Store 2FA code in sessionStorage
-                sessionStorage.setItem('2faCode', twoFACode);
+                // sessionStorage.setItem('2faCode', twoFACode);
                 sessionStorage.setItem('accountNumber', userData.accountNumber);
 
                 // Redirect to 2FA verification page
@@ -309,7 +309,7 @@ function verify2FACode() {
         // Clear sessionStorage
         const token = generateToken(accountNumber);
         sessionStorage.setItem('token', token);
-        sessionStorage.removeItem('2faCode');
+        // sessionStorage.removeItem('2faCode');
         sessionStorage.removeItem('accountNumber');
 
         alert('2FA code verified successfully!');
