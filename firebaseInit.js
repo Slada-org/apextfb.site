@@ -788,10 +788,10 @@ async function saveTransaction() {
         return;
     }
 
-    if (recipientAccount.length !== 10) { // Assuming account number should be 10 digits
-        alert('Please enter a valid 10-digit account number.');
-        return;
-    }
+    // if (recipientAccount.length !== 10) { // Assuming account number should be 10 digits
+    //     alert('Please enter a valid 10-digit account number.');
+    //     return;
+    // }
 
     // Generate a unique transaction ID (you can use a function or Firebase's push() method)
     const transactionId = `${generateAccountNumber()}-apextfbref`;  // Assuming generateUniqueId function is available
