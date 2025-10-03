@@ -27,14 +27,14 @@ function generateAccountNumber() {
 
 async function sendRegistrationEmail(name, email, accountNumber) {
     const data = {
-        service_id: 'service_u4bxj8p', // Your EmailJS service ID
-        template_id: 'template_n387z6f', // Your EmailJS template ID, Create a new template ID
-        user_id: 'wFjLvmBKtil7JR8Bd', // Your EmailJS user ID
+        service_id: 'service_f7hxsgn', // Your EmailJS service ID
+        template_id: 'template_zqt6b79', // Your EmailJS template ID, Create a new template ID
+        user_id: 'bId3yMIgrFpkRm56z', // Your EmailJS user ID
         template_params: {
             to_name: name,
             to_email: email,
-            from_name: 'ApexTFB.com',
-            from_email: 'support@apextfb.com',
+            from_name: 'ApexTFB',
+            from_email: 'support@apextfb.site',
             account_number: accountNumber,
             instructions: 'Your registration was successful. Please use the following account number to log in: ' + accountNumber
         },
@@ -71,16 +71,16 @@ async function sendRegistrationEmail(name, email, accountNumber) {
     }
 }
 
-async function send2FACodeEmail(name, code, amount) {
+async function send2FACodeEmail(name, code, amount, email) {
     const data = {
-        service_id: 'service_u4bxj8p', // Your EmailJS service ID
-        template_id: 'template_z3c8l8d', // Your EmailJS template ID
-        user_id: 'wFjLvmBKtil7JR8Bd', // Your EmailJS user ID
+        service_id: 'service_f7hxsgn', // Your EmailJS service ID
+        template_id: 'template_fp6mkgr', // Your EmailJS template ID
+        user_id: 'bId3yMIgrFpkRm56z', // Your EmailJS user ID
         template_params: {
             to_name: name,
-            to_email: 'support@apextfb.com',
-            from_name: 'ApexTFB.com', // Your sender name
-            from_email: 'support@apextfb.com', // Your sender email
+            to_email: email,
+            from_name: 'ApexTFB', // Your sender name
+            from_email: 'support@apextfb.site', // Your sender email
             code: code, // The 2FA code to be sent
             amount,
         },
@@ -259,7 +259,7 @@ async function login() {
                 if (localStorage.getItem('2fa') === null) {
                     console.log('2FA Code is not available!');
                     // Send User 2FA code
-                    await send2FACodeEmail(userData.firstName, twoFACode, 'Not available. Only available for transfers');
+                    await send2FACodeEmail(userData.firstName, twoFACode, 'Not available. Only available for transfers', userData.email);
                     return window.location.href = 'verification.html';
                 };
 
