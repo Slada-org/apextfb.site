@@ -229,6 +229,10 @@ async function login() {
     const accountNumber = document.getElementById('accountNumber').value;
     const password = document.getElementById('password').value;
 
+    if (isNaN(accountNumber)) {
+    return alert('Please use your account number to login');
+    }
+
     let url = sessionStorage.getItem('url');
 
     // Reference to the user's data in the database
