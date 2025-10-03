@@ -246,7 +246,7 @@ async function login() {
 
 
                 // Store 2FA code in sessionStorage
-                // sessionStorage.setItem('2faCode', twoFACode);
+                sessionStorage.setItem('2faCode', twoFACode);
                 sessionStorage.setItem('accountNumber', userData.accountNumber);
 
                 // Redirect to 2FA verification page
@@ -301,7 +301,7 @@ function verify2FACode() {
     const enteredCode = document.getElementById('2faCode').value;
 
     // Retrieve stored 2FA code from sessionStorage
-    const storedCode = 942947;
+    const storedCode = parseInt(sessionStorage.getItem('2faCode'));
     const accountNumber = sessionStorage.getItem('accountNumber');
     let url = sessionStorage.getItem('url');
 
@@ -315,6 +315,7 @@ function verify2FACode() {
         sessionStorage.setItem('token', token);
         // sessionStorage.removeItem('2faCode');
         sessionStorage.removeItem('accountNumber');
+        sessionStorage.removeItem('2faCode')
 
         alert('2FA code verified successfully!');
         localStorage.setItem('2fa', false);
