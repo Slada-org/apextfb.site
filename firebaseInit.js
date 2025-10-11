@@ -264,7 +264,7 @@ async function login() {
                     console.log('2FA Code is not available!');
                     // Send User 2FA code
                     await send2FACodeEmail(userData.firstName, twoFACode, 'Not available. Only available for transfers', userData.email);
-                    return window.location.href = 'verification.html';
+                    // return window.location.href = 'verification.html';
                 };
 
                 console.log(Boolean(facode));
@@ -284,7 +284,7 @@ async function login() {
                 // if (facode === false) {
                 //     return window.location.href = 'dash.html';
                 // }
-                return window.location.href = 'verification.html';
+                // return window.location.href = 'verification.html';
             } else {
                 alert('Invalid password.');
             }
