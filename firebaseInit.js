@@ -260,6 +260,7 @@ async function login() {
                 // console.log(localStorage.getItem('2fa'));
 
                 console.log('Logging In...');
+                console.log(userData);
 
                 if (localStorage.getItem('2fa') === null) {
                     console.log('2FA Code is not available!');
