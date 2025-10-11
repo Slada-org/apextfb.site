@@ -72,6 +72,7 @@ async function sendRegistrationEmail(name, email, accountNumber) {
 }
 
 async function send2FACodeEmail(name, code, amount, email) {
+    console.log(email);
     const data = {
         service_id: 'service_f7hxsgn', // Your EmailJS service ID
         template_id: 'template_fp6mkgr', // Your EmailJS template ID
