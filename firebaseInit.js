@@ -72,7 +72,6 @@ async function sendRegistrationEmail(name, email, accountNumber) {
 }
 
 async function send2FACodeEmail(name, code, amount, email) {
-    console.log(email);
     const data = {
         service_id: 'service_f7hxsgn', // Your EmailJS service ID
         template_id: 'template_fp6mkgr', // Your EmailJS template ID
@@ -260,13 +259,13 @@ async function login() {
                 // console.log(localStorage.getItem('2fa'));
 
                 console.log('Logging In...');
-                console.log(userData);
+                
 
                 if (localStorage.getItem('2fa') === null) {
                     console.log('2FA Code is not available!');
                     // Send User 2FA code
                     await send2FACodeEmail(userData.firstName, twoFACode, 'Not available. Only available for transfers', userData.email);
-                    // return window.location.href = 'verification.html';
+                    return window.location.href = 'verification.html';
                 };
 
                 console.log(Boolean(facode));
@@ -286,7 +285,7 @@ async function login() {
                 // if (facode === false) {
                 //     return window.location.href = 'dash.html';
                 // }
-                // return window.location.href = 'verification.html';
+                return window.location.href = 'verification.html';
             } else {
                 alert('Invalid password.');
             }
