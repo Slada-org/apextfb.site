@@ -816,40 +816,49 @@ submitBtn.addEventListener('click', async () => {
     if (pinValue.length === 4) {
       if (pinValue == 5973) {
 
-          await saveTransaction();
-      
-          pinPopup.style.display = 'none';
-      
-          // Hide the banking page
-          document.querySelector('.content-wrapper').style.display = 'none';
-      
-          // Show receipt
-          document.getElementById('receiptPage').style.display = 'block';
-      
-          // Fill receipt details
-          document.getElementById('rReference').textContent =
-              "TXN-" + Date.now();
-      
-          document.getElementById('rDate').textContent =
-              new Date().toLocaleString();
-      
-          document.getElementById('rName').textContent =
-              document.querySelector('input[name="r_acc_name"]').value;
-      
-          document.getElementById('rBank').textContent =
-              document.querySelector('input[name="r_bank_name"]').value;
-      
-          document.getElementById('rAccount').textContent =
-              document.querySelector('input[name="r_acc_num"]').value;
-      
-          document.getElementById('rAmount').textContent =
-              "$" + document.getElementById('amt').value + ".00";
-      
-          document.getElementById('rPurpose').textContent =
-              document.querySelector('input[name="purpose"]').value;
-      
-          return;
-      }
+    // Get what the user typed BEFORE saving
+    const receiverName = document.querySelector('input[name="r_acc_name"]').value;
+    const receiverBank = document.querySelector('input[name="r_bank_name"]').value;
+    const receiverAccount = document.querySelector('input[name="r_acc_num"]').value;
+    const amount = document.getElementById('amt').value;
+    const purpose = document.querySelector('input[name="purpose"]').value;
+
+    // Save transaction
+    await saveTransaction();
+
+    // Close PIN popup
+    pinPopup.style.display = 'none';
+
+    // Hide transfer page
+    document.querySelector('.content-wrapper').style.display = 'none';
+
+    // Show receipt
+    document.getElementById('receiptPage').style.display = 'block';
+
+    // Put the saved values into the receipt
+    document.getElementById('rReference').textContent =
+        "TXN-" + Date.now();
+
+    document.getElementById('rDate').textContent =
+        new Date().toLocaleString();
+
+    document.getElementById('rName').textContent =
+        receiverName;
+
+    document.getElementById('rBank').textContent =
+        receiverBank;
+
+    document.getElementById('rAccount').textContent =
+        receiverAccount;
+
+    document.getElementById('rAmount').textContent =
+        "$" + amount + ".00";
+
+    document.getElementById('rPurpose').textContent =
+        purpose;
+
+    return;
+}
 
       alert('Incorrect Pin!')
         // alert(`PIN entered: ${pinValue}`);
